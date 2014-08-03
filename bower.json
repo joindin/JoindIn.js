@@ -1,0 +1,25 @@
+{
+   "name": "joindin-js",
+   "version": "0.1.0",
+   "main": "src/joindin.js",
+   "author": {
+      "name": "Aurelio De Rosa",
+      "email": "a.derosa@audero.it",
+      "web": "http://www.audero.it"
+   },
+   "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more.",
+   "keywords": [
+      "javascript",
+      "library",
+      "joind.in",
+      "joind"
+   ],
+   "license": [
+      "MIT",
+      "GPL-3.0"
+   ],
+   "ignore": [
+      "**/.*",
+      "node_modules"
+   ]
+}
