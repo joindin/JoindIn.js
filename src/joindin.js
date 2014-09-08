@@ -3,6 +3,13 @@
 var JoindIn = (function (document) {
    'use strict';
 
+   // Maps the data type defined as attributes to the corresponding type used by the API
+   var dataTypeMap = {
+      speaker: 'users',
+      talk: 'talks',
+      'talk-comment': 'talk_comments'
+   };
+
    // Defines the class the serves as a hook to select elements
    var joindInClass = '.joindin-embed';
    // Contains the callbacks to execute, one for each JoindIn embedded element defined in the page
@@ -15,19 +22,66 @@ var JoindIn = (function (document) {
    // Stores the createElement function to improve the effect of the minification
    var createElement = document.createElement.bind(document);
 
+   // Defines the function to create the element for a speaker
+   function createSpeaker(data, element) {
+      var speakerUrl = 'http://joind.in/user/view/';
+      if (data.talks.length === 0 ) {
+         return;
+      }
+
+      element.style.display = 'inline-block';
+      element.style.padding = '10px';
+      element.style.background = '#fff';
+      element.style.borderRadius = '5px';
+      element.style.border = '1px solid #ddd';
+
+      var speaker = data.talks[0].speakers[0];
+      var averageRate = 0;
+
+      for (var i = 0; i < data.talks.length; i++) {
+         averageRate += data.talks[i].average_rating;
+      }
+      averageRate = Math.round(averageRate / data.talks.length);
+
+      var name = createElement('h1');
+      name.textContent = speaker.speaker_name;
+      name.style.marginTop = '0';
+      name.style.marginBottom = '5px';
+
+      var nameWrapper = createElement('a');
+      nameWrapper.href = speakerUrl + speaker.speaker_uri.slice(speaker.speaker_uri.lastIndexOf('/') + 1);
+      nameWrapper.style.color = '#2368af';
+      nameWrapper.appendChild(name);
+
+      var rating = createElement('img');
+      rating.src = ratingImageUrl.replace(/RATING/, averageRate);
+      rating.alt = 'Rate ' + averageRate + ' of 5';
+      rating.style.verticalAlign = 'middle';
+      rating.style.marginRight = '10px';
+
+      var talks = createElement('span');
+      talks.textContent = '(' + data.talks.length + ' talks)';
+
+      element.appendChild(nameWrapper);
+      element.appendChild(rating);
+      element.appendChild(talks);
+   }
+
    // Defines the function to create the element for a talk comment
    function createTalkComment(data, element) {
       data = data.comments[0];
 
-      var wrapper = createElement('blockquote');
-      wrapper.cite = data.talk_uri;
-      wrapper.setAttribute('itemprop', 'review');
-      wrapper.setAttribute('itemscope', '');
-      wrapper.setAttribute('itemtype', 'http://schema.org/Review');
-      wrapper.style.padding = '10px';
-      wrapper.style.background = '#fff';
-      wrapper.style.borderRadius = '5px';
-      wrapper.style.border = '1px solid #ddd';
+      element.style.padding = '10px';
+      element.style.background = '#fff';
+      element.style.borderRadius = '5px';
+      element.style.border = '1px solid #ddd';
+
+      var blockquote = createElement('blockquote');
+      blockquote.cite = data.talk_uri;
+      blockquote.style.margin = '0';
+      blockquote.setAttribute('itemprop', 'review');
+      blockquote.setAttribute('itemscope', '');
+      blockquote.setAttribute('itemtype', 'http://schema.org/Review');
 
       var ratingWrapper = createElement('div');
       var rating = createElement('img');
@@ -66,23 +120,22 @@ var JoindIn = (function (document) {
       var clearer = createElement('div');
       clearer.style.clear = 'both';
 
-      wrapper.appendChild(ratingWrapper);
-      wrapper.appendChild(textWrapper);
-      wrapper.appendChild(clearer);
+      blockquote.appendChild(ratingWrapper);
+      blockquote.appendChild(textWrapper);
+      blockquote.appendChild(clearer);
 
-      element.appendChild(wrapper);
+      element.appendChild(blockquote);
    }
 
    // Defines the function to create the element for a talk
    function createTalk(data, element) {
       data = data.talks[0];
 
-      var wrapper = createElement('div');
-      wrapper.style.border = '1px solid #d7dcdf';
-      wrapper.style.background = '#f0f4f8';
-      wrapper.style.borderRadius = '6px';
-      wrapper.style.padding = '10px 15px';
-      wrapper.style.marginBottom = '10px';
+      element.style.border = '1px solid #d7dcdf';
+      element.style.background = '#f0f4f8';
+      element.style.borderRadius = '6px';
+      element.style.padding = '10px 15px';
+      element.style.marginBottom = '10px';
 
       var titleWrapper = createElement('a');
       titleWrapper.href = data.website_uri;
@@ -103,37 +156,44 @@ var JoindIn = (function (document) {
 
       var rating = createElement('img');
       rating.src = ratingImageUrl.replace(/RATING/, data.average_rating);
+      rating.alt = 'Rate ' + data.average_rating + ' of 5';
       rating.style.display = 'block';
       rating.style.marginTop = '10px';
 
-      wrapper.appendChild(titleWrapper);
-      wrapper.appendChild(author);
-      wrapper.appendChild(rating);
-      wrapper.appendChild(description);
-
-      element.appendChild(wrapper);
+      element.appendChild(titleWrapper);
+      element.appendChild(author);
+      element.appendChild(rating);
+      element.appendChild(description);
    }
 
    var elements = document.querySelectorAll(joindInClass);
    [].forEach.call(elements, function(element, index) {
-      // Use getAttribute() instead of dataset to support IE9-10
-      var type = element.getAttribute('data-type');
+      // Use getAttribute() instead of dataset API to support IE 9-10
+      var type = dataTypeMap[element.getAttribute('data-type')];
       var id = element.getAttribute('data-id');
+      var url = urlAPI;
 
       if (type === 'talk_comments') {
+         url += type + '/' + id;
          callbacks[index] = function(data) {
             createTalkComment(data, element);
          };
       } else if (type === 'talks') {
+         url += type + '/' + id;
          callbacks[index] = function(data) {
             createTalk(data, element);
+         };
+      } else if (type === 'users') {
+         url += type + '/' + id + '/talks';
+         callbacks[index] = function(data) {
+            createSpeaker(data, element);
          };
       } else {
          throw new Error('Data type not recognized');
       }
 
       var script = createElement('script');
-      script.src = urlAPI + type + '/' + id + '?format=json&callback=JoindIn.callbacks[' + index + ']';
+      script.src = url + '?format=json&callback=JoindIn.callbacks[' + index + ']';
       document.head.appendChild(script);
       document.head.removeChild(script);
    });
