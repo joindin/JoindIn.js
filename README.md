@@ -4,7 +4,7 @@
 comments, talks, and more. The library is written in plain JavaScript, so has no dependencies.
 
 ## Compatibility ##
-
+t
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
 ## Demo ##
@@ -69,7 +69,7 @@ To embed my talk "[Modern front-end with the eyes of a PHP developer](https://jo
 you have to add the following element to your page:
 
 ```html
-<div class="joindin-embed" data-id="10889" data-type="talks">
+<div class="joindin-embed" data-id="10889" data-type="talk">
 </div>
 ```
 
@@ -78,7 +78,7 @@ you have to add the following element to your page:
 To embed a specific comment published on the same talk, you have to add the following element instead:
 
 ```html
-<div class="joindin-embed" data-id="44197" data-type="talk_comments">
+<div class="joindin-embed" data-id="44197" data-type="talk-comment">
 </div>
 ```
 
