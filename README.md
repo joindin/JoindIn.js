@@ -4,7 +4,7 @@
 comments, talks, and more. The library is written in plain JavaScript, so has no dependencies.
 
 ## Compatibility ##
-t
+
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
 ## Demo ##
