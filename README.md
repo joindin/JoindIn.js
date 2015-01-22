@@ -1,7 +1,7 @@
 # JoindIn.js #
 
 [JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is an unofficial JavaScript library to embed Joind.in
-comments, talks, and more. The library is written in plain JavaScript, so has no dependencies.
+comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
 
 ## Compatibility ##
 
@@ -28,7 +28,13 @@ You can install JoindIn.js using [Bower](http://bower.io):
 bower install joindin-js
 ```
 
-Then, include the JavaScript file in your web page as shown below:
+Then, include the CSS file in your web page as shown below:
+
+```html
+<link rel="stylesheet" href="bower_components/joindin-js/dist/joindin.min.css" />
+```
+
+And also the JavaScript file:
 
 ```html
 <script src="bower_components/joindin-js/dist/joindin.min.js" async></script>
@@ -46,9 +52,9 @@ The last option is to manually download the library.
 
 ## Usage ##
 
-Once you have the JavaScript file in place, you have to create one or more DOM elements for every element you want to
-embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you create must
-use the class `joindin-embed` and define two `data-*` attributes:
+Once you have the CSS and the JavaScript file in place, you have to create one or more DOM elements for every element 
+you want to embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you
+create must use the class `joindin-embed` and define two `data-*` attributes:
 
 * `data-id`: the ID of the element you want to embed. To know how to retrieve the ID of an element read the
 section [How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);

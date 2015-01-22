@@ -29,11 +29,7 @@ var JoindIn = (function (document) {
          return;
       }
 
-      element.style.display = 'inline-block';
-      element.style.padding = '10px';
-      element.style.background = '#fff';
-      element.style.borderRadius = '5px';
-      element.style.border = '1px solid #ddd';
+      element.className += ' joindin-speaker';
 
       var speaker = data.talks[0].speakers[0];
       var averageRate = 0;
@@ -45,19 +41,14 @@ var JoindIn = (function (document) {
 
       var name = createElement('h1');
       name.textContent = speaker.speaker_name;
-      name.style.marginTop = '0';
-      name.style.marginBottom = '5px';
 
       var nameWrapper = createElement('a');
       nameWrapper.href = speakerUrl + speaker.speaker_uri.slice(speaker.speaker_uri.lastIndexOf('/') + 1);
-      nameWrapper.style.color = '#2368af';
       nameWrapper.appendChild(name);
 
       var rating = createElement('img');
       rating.src = ratingImageUrl.replace(/RATING/, averageRate);
       rating.alt = 'Rate ' + averageRate + ' of 5';
-      rating.style.verticalAlign = 'middle';
-      rating.style.marginRight = '10px';
 
       var talks = createElement('span');
       talks.textContent = '(' + data.talks.length + ' talks)';
@@ -71,14 +62,10 @@ var JoindIn = (function (document) {
    function createTalkComment(data, element) {
       data = data.comments[0];
 
-      element.style.padding = '10px';
-      element.style.background = '#fff';
-      element.style.borderRadius = '5px';
-      element.style.border = '1px solid #ddd';
+      element.className += ' joindin-talk-comment';
 
       var blockquote = createElement('blockquote');
       blockquote.cite = data.talk_uri;
-      blockquote.style.margin = '0';
       blockquote.setAttribute('itemprop', 'review');
       blockquote.setAttribute('itemscope', '');
       blockquote.setAttribute('itemtype', 'http://schema.org/Review');
@@ -87,17 +74,14 @@ var JoindIn = (function (document) {
       var rating = createElement('img');
       rating.src = ratingImageUrl.replace(/RATING/, data.rating);
       rating.alt = 'Rate ' + data.rating + ' of 5';
-      ratingWrapper.style.width = '140px';
-      ratingWrapper.style.float = 'left';
+      ratingWrapper.className = 'rating-wrapper';
       ratingWrapper.appendChild(rating);
 
       var textWrapper = createElement('div');
-      textWrapper.style.width = 'auto';
-      textWrapper.style.overflow = 'hidden';
+      textWrapper.className = 'text-wrapper';
       var text = createElement('p');
       text.setAttribute('itemprop', 'description');
       text.textContent = data.comment;
-      text.style.marginTop = '0';
       textWrapper.appendChild(text);
 
       var footer = createElement('footer');
@@ -117,12 +101,8 @@ var JoindIn = (function (document) {
       footer.appendChild(date);
       textWrapper.appendChild(footer);
 
-      var clearer = createElement('div');
-      clearer.style.clear = 'both';
-
       blockquote.appendChild(ratingWrapper);
       blockquote.appendChild(textWrapper);
-      blockquote.appendChild(clearer);
 
       element.appendChild(blockquote);
    }
@@ -131,19 +111,12 @@ var JoindIn = (function (document) {
    function createTalk(data, element) {
       data = data.talks[0];
 
-      element.style.border = '1px solid #d7dcdf';
-      element.style.background = '#f0f4f8';
-      element.style.borderRadius = '6px';
-      element.style.padding = '10px 15px';
-      element.style.marginBottom = '10px';
+      element.className += ' joindin-talk';
 
       var titleWrapper = createElement('a');
       titleWrapper.href = data.website_uri;
-      titleWrapper.style.color = '#2368af';
       var title = createElement('h1');
       title.textContent = data.talk_title;
-      title.style.marginTop = '0';
-      title.style.marginBottom = '5px';
       titleWrapper.appendChild(title);
 
       var description = createElement('p');
@@ -157,8 +130,6 @@ var JoindIn = (function (document) {
       var rating = createElement('img');
       rating.src = ratingImageUrl.replace(/RATING/, data.average_rating);
       rating.alt = 'Rate ' + data.average_rating + ' of 5';
-      rating.style.display = 'block';
-      rating.style.marginTop = '10px';
 
       element.appendChild(titleWrapper);
       element.appendChild(author);

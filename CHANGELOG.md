@@ -1,3 +1,9 @@
+# 0.3.0 #
+
+* [!] Moved the style to an external style sheet ([#1][])
+
+[#1]: https://github.com/AurelioDeRosa/JoindIn.js/issues/1
+
 # 0.2.0 (08-10-2014) #
 
 * [!] Added the possibility to embed a **speaker** profile (`data-type="speaker"`)
