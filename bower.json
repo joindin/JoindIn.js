@@ -1,7 +1,7 @@
 {
    "name": "joindin-js",
    "version": "0.2.0",
-   "main": "src/joindin.js",
+   "main": ["src/joindin.js", "src/joindin.css"],
    "author": {
       "name": "Aurelio De Rosa",
       "email": "a.derosa@audero.it",
