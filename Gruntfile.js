@@ -12,6 +12,13 @@ module.exports = function (grunt) {
       pkg: grunt.file.readJSON('package.json'),
       config: config,
 
+      cssmin: {
+         dist: {
+            files: {
+               '<%= config.dist %>/joindin.min.css': ['<%= config.src %>/joindin.css']
+            }
+         }
+      },
       uglify: {
          options: {
             banner: '/*! joindin.js <%= pkg.version %> | Aurelio De Rosa (@AurelioDeRosa) | MIT/GPL-3.0 Licensed */\n'
@@ -41,6 +48,7 @@ module.exports = function (grunt) {
 
    grunt.registerTask('default', [
       'jshint',
-      'uglify'
+      'uglify',
+      'cssmin'
    ]);
 };
