@@ -2,6 +2,7 @@
 
 * [!] Moved the style to an external style sheet ([#1][])
 * Added JSCS to improve the code style
+* Added missing `grunt-contrib-watch` task
 
 [#1]: https://github.com/AurelioDeRosa/JoindIn.js/issues/1
 
