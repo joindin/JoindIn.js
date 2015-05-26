@@ -40,7 +40,7 @@ module.exports = function (grunt) {
          src: 'src/**/*.js',
          options: {
             config: '.jscsrc',
-            force: false,
+            force: true,
             fix: true
          }
       },
