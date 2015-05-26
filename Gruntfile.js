@@ -36,9 +36,17 @@ module.exports = function (grunt) {
             reporter: require('jshint-stylish')
          }
       },
+      jscs: {
+         src: 'src/**/*.js',
+         options: {
+            config: '.jscsrc',
+            force: false,
+            fix: true
+         }
+      },
       watch: {
          files: ['<%= jshint.files %>'],
-         tasks: ['jshint']
+         tasks: ['jshint', 'jscs']
       }
    });
 

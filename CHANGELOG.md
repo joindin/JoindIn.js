@@ -1,6 +1,7 @@
 # 0.3.0 #
 
 * [!] Moved the style to an external style sheet ([#1][])
+* Added JSCS to improve the code style
 
 [#1]: https://github.com/AurelioDeRosa/JoindIn.js/issues/1
 

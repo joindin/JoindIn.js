@@ -1,22 +1,23 @@
 {
-   "name": "joindin-js",
-   "version": "0.2.0",
-   "author": {
-      "name": "Aurelio De Rosa",
-      "email": "a.derosa@audero.it",
-      "web": "http://www.audero.it"
-   },
-   "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more",
-   "dependencies": {},
-   "devDependencies": {
-      "grunt": "^0.4.5",
-      "grunt-contrib-cssmin": "^0.12.3",
-      "grunt-contrib-jshint": "^0.11.2",
-      "grunt-contrib-uglify": "^0.9.1",
-      "jshint-stylish": "^2.0.0",
-      "load-grunt-tasks": "^3.2.0"
-   },
-   "engines": {
-      "node": ">=0.10.16"
-   }
+  "name": "joindin-js",
+  "version": "0.2.0",
+  "author": {
+    "name": "Aurelio De Rosa",
+    "email": "a.derosa@audero.it",
+    "web": "http://www.audero.it"
+  },
+  "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-jscs": "^1.8.0",
+    "jshint-stylish": "^2.0.0",
+    "load-grunt-tasks": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=0.10.16"
+  }
 }
