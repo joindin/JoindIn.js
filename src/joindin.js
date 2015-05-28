@@ -1,6 +1,4 @@
-/* jshint browser: true */
-/* exported JoindIn */
-var JoindIn = (function (document) {
+(function (window, document) {
    'use strict';
 
    // Maps the data type defined as attributes to the corresponding type used by the API
@@ -12,165 +10,394 @@ var JoindIn = (function (document) {
 
    // Defines the class the serves as a hook to select elements
    var joindInClass = '.joindin-embed';
+
    // Contains the callbacks to execute, one for each JoindIn embedded element defined in the page
    var callbacks = [];
+
    // Defines the base URL to call the JoindIn API
    var urlAPI = 'http://api.joind.in/v2.1/';
+
    // Defines the URL to show the rating image
    var ratingImageUrl = 'https://joind.in/inc/img/rating-RATING.gif';
 
    // Stores the createElement function to improve the effect of the minification
    var createElement = document.createElement.bind(document);
 
-   // Defines the function to create the element for a speaker
-   function createSpeaker(data, element) {
+   /**
+    * Sets the attributes of the passed HTMLElement to the given values.
+    *
+    * @param {HTMLElement} element
+    * @param {Array} attributes
+    * @param {Array} values
+    *
+    * @returns {HTMLElement}
+    */
+   function setAttributes(element, attributes, values) {
+      for(var i = 0; i < attributes.length; i++) {
+         element.setAttribute(attributes[i], values[i]);
+      }
+
+      return element;
+   }
+
+   /**
+    * Sets the properties of the passed HTMLElement to the given values.
+    *
+    * @param {HTMLElement} element
+    * @param {Array} properties
+    * @param {Array} values
+    *
+    * @returns {HTMLElement}
+    */
+   function setProperties(element, properties, values) {
+      for(var i = 0; i < properties.length; i++) {
+         element[properties[i]] = values[i];
+      }
+
+      return element;
+   }
+
+   /**
+    * Appends the provided children to the specified HTMLElement.
+    *
+    * @param {HTMLElement} element
+    * @param {HTMLElement[]} children
+    *
+    * @returns {HTMLElement}
+    */
+   function appendChildren(element, children) {
+      for(var i = 0; i < children.length; i++) {
+         element.appendChild(children[i]);
+      }
+
+      return element;
+   }
+
+   /**
+    * Calculates the average of the values provided.
+    *
+    * @param {number[]} values
+    *
+    * @returns {number}
+    */
+   function average(values) {
+      var average = 0;
+
+      if (values.length === 0) {
+         return average;
+      }
+
+      for(var i = 0; i < values.length; i++) {
+         average += values[i];
+      }
+
+      return Math.round(average / values.length);
+   }
+
+   /**
+    * Creates an img element representing the rate of a given element.
+    *
+    * @param {number} rate
+    *
+    * @returns {HTMLElement}
+    */
+   function createRateElement(rate) {
+      return setProperties(
+         createElement('img'),
+         [
+            'src',
+            'alt'
+         ],
+         [
+            ratingImageUrl.replace(/RATING/, rate),
+            'Rate ' + rate + ' of 5'
+         ]
+      );
+   }
+
+   /**
+    * Creates the elements for a speaker based on the provided data and
+    * append them to the passed element.
+    *
+    * @param {HTMLElement} element
+    * @param {Object} data
+    */
+   function createSpeaker(element, data) {
+      var name, nameWrapper, rating, speaker, talks;
       var speakerUrl = 'http://joind.in/user/view/';
-      if (data.talks.length === 0 ) {
+
+      if (data.talks.length === 0) {
          return;
       }
 
+      speaker = data.talks[0].speakers[0];
+
+      name = setProperties(
+         createElement('h1'),
+         ['textContent'],
+         [speaker.speaker_name]
+      );
+
+      nameWrapper = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'innerHTML'
+         ],
+         [
+            speakerUrl + speaker.speaker_uri.slice(speaker.speaker_uri.lastIndexOf('/') + 1),
+            name.outerHTML
+         ]
+      );
+
+      rating = createRateElement(
+         average(
+            data.talks.map(function(element) {
+               return element.average_rating;
+            })
+         )
+      );
+
+      talks = setProperties(
+         createElement('span'),
+         ['textContent'],
+         ['(' + data.talks.length + ' talks)']
+      );
+
       element.className += ' joindin-speaker';
-
-      var speaker = data.talks[0].speakers[0];
-      var averageRate = 0;
-
-      for (var i = 0; i < data.talks.length; i++) {
-         averageRate += data.talks[i].average_rating;
-      }
-      averageRate = Math.round(averageRate / data.talks.length);
-
-      var name = createElement('h1');
-      name.textContent = speaker.speaker_name;
-
-      var nameWrapper = createElement('a');
-      nameWrapper.href = speakerUrl + speaker.speaker_uri.slice(speaker.speaker_uri.lastIndexOf('/') + 1);
-      nameWrapper.appendChild(name);
-
-      var rating = createElement('img');
-      rating.src = ratingImageUrl.replace(/RATING/, averageRate);
-      rating.alt = 'Rate ' + averageRate + ' of 5';
-
-      var talks = createElement('span');
-      talks.textContent = '(' + data.talks.length + ' talks)';
-
-      element.appendChild(nameWrapper);
-      element.appendChild(rating);
-      element.appendChild(talks);
+      appendChildren(
+         element,
+         [
+            nameWrapper,
+            rating,
+            talks
+         ]
+      );
    }
 
-   // Defines the function to create the element for a talk comment
-   function createTalkComment(data, element) {
-      data = data.comments[0];
+   /**
+    * Creates the elements for a talk comment based on the provided data and
+    * append them to the passed element.
+    *
+    * @param {HTMLElement} element
+    * @param {Object} data
+    */
+   function createTalkComment(element, data) {
+      var comment, blockquote, footer, ratingWrapper, text, textWrapper, user, date, rating;
+
+      comment = data.comments[0];
+
+      blockquote = setProperties(
+         createElement('blockquote'),
+         ['cite'],
+         [comment.talk_uri]
+      );
+
+      setAttributes(
+         blockquote,
+         [
+            'itemprop',
+            'itemscope',
+            'itemtype'
+         ],
+         [
+            'review',
+            '',
+            'http://schema.org/Review'
+         ]
+      );
+
+      textWrapper = setProperties(
+         createElement('div'),
+         ['className'],
+         ['text-wrapper']
+      );
+
+      text = setAttributes(
+         createElement('p'),
+         ['itemprop'],
+         ['description']
+      );
+
+      setProperties(
+         text,
+         ['textContent'],
+         [comment.comment]
+      );
+
+      user = setAttributes(
+         createElement('cite'),
+         ['itemprop'],
+         ['author']
+      );
+
+      setProperties(
+         user,
+         ['textContent'],
+         [comment.user_display_name]
+      );
+
+      date = setAttributes(
+         createElement('time'),
+         [
+            'datetime',
+            'itemprop'
+         ],
+         [
+            comment.created_date,
+            'datePublished'
+         ]
+      );
+
+      setProperties(
+         user,
+         ['textContent'],
+         [new Date(comment.created_date).toLocaleString()]
+      );
+
+      rating = createRateElement(comment.rating);
+
+      ratingWrapper = setProperties(
+         createElement('div'),
+         [
+            'className',
+            'innerHTML'
+         ],
+         [
+            'rating-wrapper',
+            rating.outerHTML
+         ]
+      );
+
+      footer = appendChildren(
+         createElement('footer'),
+         [
+            document.createTextNode('— '),
+            user,
+            document.createTextNode(' on '),
+            date
+         ]
+      );
+
+      appendChildren(
+         textWrapper,
+         [
+            text,
+            footer
+         ]
+      );
+
+      appendChildren(
+         blockquote,
+         [
+            ratingWrapper,
+            textWrapper
+         ]
+      );
 
       element.className += ' joindin-talk-comment';
-
-      var blockquote = createElement('blockquote');
-      blockquote.cite = data.talk_uri;
-      blockquote.setAttribute('itemprop', 'review');
-      blockquote.setAttribute('itemscope', '');
-      blockquote.setAttribute('itemtype', 'http://schema.org/Review');
-
-      var ratingWrapper = createElement('div');
-      var rating = createElement('img');
-      rating.src = ratingImageUrl.replace(/RATING/, data.rating);
-      rating.alt = 'Rate ' + data.rating + ' of 5';
-      ratingWrapper.className = 'rating-wrapper';
-      ratingWrapper.appendChild(rating);
-
-      var textWrapper = createElement('div');
-      textWrapper.className = 'text-wrapper';
-      var text = createElement('p');
-      text.setAttribute('itemprop', 'description');
-      text.textContent = data.comment;
-      textWrapper.appendChild(text);
-
-      var footer = createElement('footer');
-
-      var user = createElement('cite');
-      user.setAttribute('itemprop', 'author');
-      user.textContent = data.user_display_name;
-
-      var date = createElement('time');
-      date.setAttribute('datetime', data.created_date);
-      date.setAttribute('itemprop', 'datePublished');
-      date.textContent = new Date(data.created_date).toLocaleString();
-
-      footer.appendChild(document.createTextNode('— '));
-      footer.appendChild(user);
-      footer.appendChild(document.createTextNode(' on '));
-      footer.appendChild(date);
-      textWrapper.appendChild(footer);
-
-      blockquote.appendChild(ratingWrapper);
-      blockquote.appendChild(textWrapper);
-
       element.appendChild(blockquote);
    }
 
-   // Defines the function to create the element for a talk
-   function createTalk(data, element) {
-      data = data.talks[0];
+   /**
+    * Creates the elements for a talk based on the provided data and
+    * append them to the passed element.
+    *
+    * @param {HTMLElement} element
+    * @param {Object} data
+    */
+   function createTalk(element, data) {
+      var talk, title, titleWrapper, description, author, rating;
+
+      talk = data.talks[0];
+
+      title = setProperties(
+         createElement('h1'),
+         ['textContent'],
+         [talk.talk_title]
+      );
+
+      titleWrapper = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'innerHTML'
+         ],
+         [
+            talk.website_uri,
+            title.outerHTML
+         ]
+      );
+
+      description = setProperties(
+         createElement('p'),
+         ['textContent'],
+         [talk.talk_description]
+      );
+
+      author = setProperties(
+         createElement('span'),
+         ['textContent'],
+         [
+            talk.speakers.map(function(element) {
+               return element.speaker_name;
+            }).join(' , ')
+         ]
+      );
+
+      rating = createRateElement(talk.average_rating);
 
       element.className += ' joindin-talk';
-
-      var titleWrapper = createElement('a');
-      titleWrapper.href = data.website_uri;
-      var title = createElement('h1');
-      title.textContent = data.talk_title;
-      titleWrapper.appendChild(title);
-
-      var description = createElement('p');
-      description.textContent = data.talk_description;
-
-      var author = createElement('span');
-      author.textContent = data.speakers.map(function(element) {
-         return element.speaker_name;
-      }).join(' , ');
-
-      var rating = createElement('img');
-      rating.src = ratingImageUrl.replace(/RATING/, data.average_rating);
-      rating.alt = 'Rate ' + data.average_rating + ' of 5';
-
-      element.appendChild(titleWrapper);
-      element.appendChild(author);
-      element.appendChild(rating);
-      element.appendChild(description);
+      appendChildren(
+         element,
+         [
+            titleWrapper,
+            author,
+            rating,
+            description
+         ]
+      );
    }
 
-   var elements = document.querySelectorAll(joindInClass);
-   [].forEach.call(elements, function(element, index) {
-      // Use getAttribute() instead of dataset API to support IE 9-10
+   /**
+    * Adds a new callback to the queue for the element provided.
+    *
+    * @param {HTMLElement} element
+    */
+   function createCallback(element) {
+      // Use getAttribute() instead of the Dataset API to support IE 9-10
       var type = dataTypeMap[element.getAttribute('data-type')];
       var id = element.getAttribute('data-id');
       var url = urlAPI;
 
       if (type === 'talk_comments') {
          url += type + '/' + id;
-         callbacks[index] = function(data) {
-            createTalkComment(data, element);
-         };
+         callbacks.push(createTalkComment.bind(null, element));
       } else if (type === 'talks') {
          url += type + '/' + id;
-         callbacks[index] = function(data) {
-            createTalk(data, element);
-         };
+         callbacks.push(createTalk.bind(null, element));
       } else if (type === 'users') {
          url += type + '/' + id + '/talks';
-         callbacks[index] = function(data) {
-            createSpeaker(data, element);
-         };
+         callbacks.push(createSpeaker.bind(null, element));
       } else {
          throw new Error('Data type not recognized');
       }
 
       var script = createElement('script');
-      script.src = url + '?format=json&callback=JoindIn.callbacks[' + index + ']';
+
+      script.src = url + '?format=json&callback=JoindIn.callbacks[' + (callbacks.length - 1) + ']';
       document.head.appendChild(script);
       document.head.removeChild(script);
-   });
+   }
+
+   // Adds a callback for every embedded element
+   [].forEach.call(
+      document.querySelectorAll(joindInClass),
+      createCallback
+   );
 
    // Exposes the callbacks outside the IIFE
-   return {
+   window.JoindIn = {
       callbacks: callbacks
    };
-})(document);
+})(window, document);

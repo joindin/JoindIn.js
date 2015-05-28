@@ -3,10 +3,10 @@
 *********************/
 .joindin-speaker
 {
-   display: inline-block;
-   background-color: #FFFFFF;
+   background: #FFFFFF;
    border: 1px solid #DDDDDD;
    border-radius: 5px;
+   display: inline-block;
    padding: 10px;
 }
 
@@ -17,14 +17,14 @@
 
 .joindin-speaker h1
 {
-   margin-top: 0;
    margin-bottom: 5px;
+   margin-top: 0;
 }
 
 .joindin-speaker img
 {
-   vertical-align: middle;
    margin-right: 10px;
+   vertical-align: middle;
 }
 
 /*********************
@@ -32,10 +32,10 @@
 *********************/
 .joindin-talk-comment
 {
-   padding: 10px;
    background: #FFFFFF;
-   border-radius: 5px;
    border: 1px solid #DDDDDD;
+   border-radius: 5px;
+   padding: 10px;
 }
 
 .joindin-talk-comment blockquote
@@ -45,21 +45,21 @@
 
 .joindin-talk-comment blockquote:after
 {
+   clear: both;
    content: "";
    display: table;
-   clear: both;
 }
 
 .joindin-talk-comment .rating-wrapper
 {
-   width: 140px;
    float: left;
+   width: 140px;
 }
 
 .joindin-talk-comment .text-wrapper
 {
-   width: auto;
    overflow: hidden;
+   width: auto;
 }
 
 .joindin-talk-comment .text-wrapper p
@@ -72,11 +72,11 @@
 *********************/
 .joindin-talk
 {
-   background-color: #F0F4F8;
+   background: #F0F4F8;
    border: 1px solid #D7DCDF;
    border-radius: 6px;
-   padding: 10px 15px;
    margin-bottom: 10px;
+   padding: 10px 15px;
 }
 
 .joindin-talk a
@@ -86,8 +86,8 @@
 
 .joindin-talk h1
 {
-   margin-top: 0;
    margin-bottom: 5px;
+   margin-top: 0;
 }
 
 .joindin-talk img
