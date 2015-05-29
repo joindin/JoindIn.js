@@ -1,12 +1,12 @@
 {
   "name": "joindin-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Aurelio De Rosa",
     "email": "a.derosa@audero.it",
     "web": "http://www.audero.it"
   },
-  "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more",
+  "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more.",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -1,4 +1,4 @@
-# 0.3.0 #
+# 0.3.0 (30-05-2015) #
 
 * [!] Moved the style to an external style sheet ([#1][])
 * [!] Added the possibility to embed an **event** (`data-type="event"`)
