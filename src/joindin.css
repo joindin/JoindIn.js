@@ -95,3 +95,58 @@
    display: block;
    margin-top: 10px;
 }
+
+/*********************
+         EVENT
+*********************/
+.joindin-event
+{
+   background: #FFFFFF;
+   border: 1px solid #DDDDDD;
+   border-radius: 5px;
+   display: inline-block;
+   padding: 10px;
+}
+
+.joindin-event img
+{
+   float: left;
+   margin-bottom: 10px;
+   margin-right: 10px;
+   vertical-align: middle;
+}
+
+.joindin-event a
+{
+   color: #2368AF;
+   display: block;
+   margin-bottom: 5px;
+}
+
+.joindin-event h1
+{
+   margin-bottom: 5px;
+   margin-top: 0;
+}
+
+.joindin-event p
+{
+   clear: both;
+}
+
+.joindin-event dl
+{
+   padding-left: 20px;
+}
+
+.joindin-event dt
+{
+   display: list-item;
+   float: left;
+   margin-right: 3px;
+}
+
+.joindin-event dd
+{
+   margin: 0;
+}

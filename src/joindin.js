@@ -3,6 +3,7 @@
 
    // Maps the data type defined as attributes to the corresponding type used by the API
    var dataTypeMap = {
+      event: 'events',
       speaker: 'users',
       talk: 'talks',
       'talk-comment': 'talk_comments'
@@ -111,6 +112,148 @@
          [
             ratingImageUrl.replace(/RATING/, rate),
             'Rate ' + rate + ' of 5'
+         ]
+      );
+   }
+
+   /**
+    * Creates a definition list element based on the key-value pairs provided.
+    *
+    * @param {Object} map
+    *
+    * @returns {HTMLElement}
+    */
+   function createDefinitionListElement(map) {
+      var definitionTerm, definitionDescription;
+      var definitionList = createElement('dl');
+
+      for(var term in map) {
+         definitionTerm = setProperties(
+            createElement('dt'),
+            ['textContent'],
+            [term + ': ']
+         );
+
+         definitionDescription = setProperties(
+            createElement('dd'),
+            ['textContent'],
+            [map[term]]
+         );
+
+         appendChildren(
+            definitionList,
+            [
+               definitionTerm,
+               definitionDescription
+            ]
+         );
+      }
+
+      return definitionList;
+   }
+
+   /**
+    * Creates the elements for an event based on the provided data and
+    * append them to the passed element.
+    *
+    * @param {HTMLElement} element
+    * @param {Object} data
+    */
+   function createEvent(element, data) {
+      var event, icon, name, nameWrapper, website, dateStart, dateEnd, description, additionalInfo;
+      var iconPath = 'https://joind.in/inc/img/event_icons/';
+
+      event = data.events[0];
+
+      if (event.icon) {
+         icon = setAttributes(
+            createElement('img'),
+            ['src'],
+            [iconPath + event.icon]
+         );
+      } else {
+         icon = document.createTextNode('');
+      }
+
+      name = setProperties(
+         createElement('h1'),
+         ['textContent'],
+         [event.name]
+      );
+
+      nameWrapper = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'innerHTML'
+         ],
+         [
+            event.website_uri,
+            name.outerHTML
+         ]
+      );
+
+      website = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'textContent'
+         ],
+         [
+            event.href,
+            event.href
+         ]
+      );
+
+      dateStart = setProperties(
+         createElement('time'),
+         ['textContent'],
+         [new Date(event.start_date).toDateString()]
+      );
+
+      setAttributes(
+         dateStart,
+         ['datetime'],
+         [event.start_date]
+      );
+
+      dateEnd = setProperties(
+         createElement('time'),
+         ['textContent'],
+         [new Date(event.end_date).toDateString()]
+      );
+
+      setAttributes(
+         dateEnd,
+         ['datetime'],
+         [event.end_date]
+      );
+
+      description = setProperties(
+         createElement('p'),
+         ['textContent'],
+         [event.description]
+      );
+
+      additionalInfo = createDefinitionListElement({
+         Attendees: event.attendee_count,
+         Tracks: event.tracks_count,
+         Talks: event.talks_count
+      });
+
+      element.className += ' joindin-event';
+      appendChildren(
+         element,
+         [
+            icon,
+            nameWrapper,
+            website,
+            dateStart,
+            document.createTextNode(' - '),
+            dateEnd,
+            description,
+            document.createTextNode('Other info about the event:'),
+            additionalInfo
          ]
       );
    }
@@ -250,7 +393,7 @@
       );
 
       setProperties(
-         user,
+         date,
          ['textContent'],
          [new Date(comment.created_date).toLocaleString()]
       );
@@ -370,7 +513,10 @@
       var id = element.getAttribute('data-id');
       var url = urlAPI;
 
-      if (type === 'talk_comments') {
+      if (type === 'events') {
+         url += type + '/' + id;
+         callbacks.push(createEvent.bind(null, element));
+      } else if (type === 'talk_comments') {
          url += type + '/' + id;
          callbacks.push(createTalkComment.bind(null, element));
       } else if (type === 'talks') {

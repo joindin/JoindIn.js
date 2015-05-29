@@ -1,6 +1,7 @@
 # 0.3.0 #
 
 * [!] Moved the style to an external style sheet ([#1][])
+* [!] Added the possibility to embed an **event** (`data-type="event"`)
 * Added JSCS to improve the code style
 * Added missing `grunt-contrib-watch` task
 * Complete refactor of the code

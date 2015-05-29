@@ -17,6 +17,7 @@ The library supports the following elements:
 * Speaker (`data-type="speaker"`)
 * Talk (`data-type="talk"`)
 * Comment (`data-type="talk-comment"`)
+* Event (`data-type="event"`)
 
 More elements will be integrated soon.
 
@@ -37,10 +38,10 @@ Then, include the CSS file in your web page as shown below:
 And also the JavaScript file:
 
 ```html
-<script src="bower_components/joindin-js/dist/joindin.min.js" async></script>
+<script src="bower_components/joindin-js/dist/joindin.min.js" defer async></script>
 ```
 
-**Note**: the `async` attribute isn't necessary but can improve the performance of your website.
+**Note**: the `defer` (for Internet Explorer 9) and the `async` (for modern browsers) attributes aren't necessary but [can improve the performance of your website](https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/).
 
 If you don't have or you don't want to use Bower, you can clone this repository running the command:
 
@@ -67,8 +68,7 @@ section [How to retrieve the ID of the element to embed](#how-to-retrieve-the-id
 To embed [my profile](https://joind.in/user/view/25190), you have to add the following element to your page:
 
 ```html
-<div class="joindin-embed" data-id="25190" data-type="speaker">
-</div>
+<div class="joindin-embed" data-id="25190" data-type="speaker"></div>
 ```
 
 ### Embedding a talk ###
@@ -77,8 +77,7 @@ To embed my talk "[Modern front-end with the eyes of a PHP developer](https://jo
 you have to add the following element to your page:
 
 ```html
-<div class="joindin-embed" data-id="10889" data-type="talk">
-</div>
+<div class="joindin-embed" data-id="10889" data-type="talk"></div>
 ```
 
 ### Embedding a comment of a talk ###
@@ -86,11 +85,19 @@ you have to add the following element to your page:
 To embed a specific comment published on the same talk, you have to add the following element instead:
 
 ```html
-<div class="joindin-embed" data-id="44197" data-type="talk-comment">
-</div>
+<div class="joindin-embed" data-id="44197" data-type="talk-comment"></div>
 ```
 
 Note that in this case the ID refers to the comment, not the talk.
+
+### Embedding an event ###
+
+To embed the [jsDay 2015](https://joind.in/event/view/3094) event,
+you have to add the following element to your page:
+
+```html
+<div class="joindin-embed" data-id="3094" data-type="event"></div>
+```
 
 ### How to retrieve the ID of the element to embed ##
 
@@ -106,6 +113,9 @@ The ID of a **talk** can be found in the URL of the website. For example, the UR
 To retrieve the ID of a **comment** you have to look at the source code of the page. It's written as part of the class
 name set to the element wrapping each comment. For example, you can find a class name like `comment-43964` where
 43964 is the ID of the comment.
+
+The ID of an **event** can be found in the URL of the website. For example, the URL of the jsDay 2015
+is [https://joind.in/event/view/3094](https://joind.in/event/view/3094), so the ID is 3094.
 
 ## Contribute ##
 
