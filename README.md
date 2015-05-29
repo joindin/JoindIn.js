@@ -1,6 +1,6 @@
 # JoindIn.js #
 
-[JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is an unofficial JavaScript library to embed Joind.in
+[JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is an unofficial JavaScript library to embed [Joind.in](http://joind.in)
 comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
 
 ## Compatibility ##
@@ -42,13 +42,15 @@ And also the JavaScript file:
 
 **Note**: the `async` attribute isn't necessary but can improve the performance of your website.
 
-If you don't have or don't want to use Bower, you can clone this repository running the command:
+If you don't have or you don't want to use Bower, you can clone this repository running the command:
 
 ```shell
 git clone https://github.com/AurelioDeRosa/JoindIn.js.git
 ```
 
-The last option is to manually download the library.
+and copy the files contained in the `dist` folder into your project.
+
+The last option you have is to manually download the library.
 
 ## Usage ##
 
@@ -79,7 +81,7 @@ you have to add the following element to your page:
 </div>
 ```
 
-### Embedding a comment on a talk ###
+### Embedding a comment of a talk ###
 
 To embed a specific comment published on the same talk, you have to add the following element instead:
 
@@ -104,11 +106,6 @@ The ID of a **talk** can be found in the URL of the website. For example, the UR
 To retrieve the ID of a **comment** you have to look at the source code of the page. It's written as part of the class
 name set to the element wrapping each comment. For example, you can find a class name like `comment-43964` where
 43964 is the ID of the comment.
-
-## Note ##
-
-JoindIn.js is in a very early stage, so how to use it is susceptible to changes
-and [every contribution is welcomed](#contribute).
 
 ## Contribute ##
 
