@@ -1,6 +1,6 @@
 # JoindIn.js #
 
-[JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is an unofficial JavaScript library to embed [Joind.in](http://joind.in)
+[JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is the official JavaScript library to embed [Joind.in](http://joind.in)
 comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
 
 ## Compatibility ##
