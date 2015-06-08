@@ -8,7 +8,7 @@ comments, talks, and more. The library is written in plain JavaScript, so it has
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
 ## Demo ##
-A live demo is available [here](http://htmlpreview.github.io/?https://github.com/AurelioDeRosa/JoindIn.js/blob/master/demo/index.html).
+A live demo is available [here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
 ## Elements supported ##
 
