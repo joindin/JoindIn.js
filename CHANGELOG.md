@@ -1,5 +1,7 @@
 # 0.4.0-pre #
 
+* Added `grunt-compare-size` task to detect how much a change affects the size of the library
+
 # 0.3.0 (30-05-2015) #
 
 * [!] Moved the style to an external style sheet ([#1][])

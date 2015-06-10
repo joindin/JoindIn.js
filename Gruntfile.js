@@ -48,6 +48,20 @@ module.exports = function (grunt) {
       watch: {
          files: ['<%= jshint.files %>'],
          tasks: ['jshint', 'jscs']
+      },
+      compare_size: {
+         options: {
+            cache: '.sizecache.json',
+            compress: {
+               gz: function( fileContents ) {
+                  return require('gzip-js').zip(fileContents, {}).length;
+               }
+            }
+         },
+         files: [
+            'dist/joindin.min.js',
+            'dist/joindin.min.css'
+         ]
       }
    });
 
@@ -58,6 +72,7 @@ module.exports = function (grunt) {
    grunt.registerTask('default', [
       'jshint',
       'uglify',
-      'cssmin'
+      'cssmin',
+      'compare_size'
    ]);
 };
