@@ -6,7 +6,7 @@
     "email": "a.derosa@audero.it",
     "web": "http://www.audero.it"
   },
-  "description": "An unofficial JavaScript library to embed Joind.in comments, talks, and more.",
+  "description": "The official JavaScript library to embed Joind.in comments, talks, and more.",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
