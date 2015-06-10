@@ -6,7 +6,7 @@
 * Added missing `grunt-contrib-watch` task
 * Complete refactor of the code
 
-[#1]: https://github.com/AurelioDeRosa/JoindIn.js/issues/1
+[#1]: https://github.com/joindin/JoindIn.js/issues/1
 
 # 0.2.0 (08-10-2014) #
 

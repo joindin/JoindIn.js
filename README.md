@@ -1,6 +1,6 @@
 # JoindIn.js #
 
-[JoindIn.js](https://github.com/AurelioDeRosa/JoindIn.js) is the official JavaScript library to embed [Joind.in](http://joind.in)
+[JoindIn.js](https://github.com/joindin/JoindIn.js) is the official JavaScript library to embed [Joind.in](http://joind.in)
 comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
 
 ## Compatibility ##
@@ -46,7 +46,7 @@ And also the JavaScript file:
 If you don't have or you don't want to use Bower, you can clone this repository running the command:
 
 ```shell
-git clone https://github.com/AurelioDeRosa/JoindIn.js.git
+git clone https://github.com/joindin/JoindIn.js.git
 ```
 
 and copy the files contained in the `dist` folder into your project.
