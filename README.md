@@ -3,6 +3,13 @@
 [JoindIn.js](https://github.com/joindin/JoindIn.js) is the official JavaScript library to embed [Joind.in](http://joind.in)
 comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
 
+## Welcome ##
+
+Joind.in welcomes all contributors regardless of your ability or experience. We especially welcome you if you are new
+to Open Source development and will provide a helping hand. To ensure that everyone understands what we expect from
+our community, our projects have a [Contributor Code of Conduct](CODE_OF_CONDUCT.md) and by participating in the 
+development of joind.in you agree to abide by its terms.
+
 ## Compatibility ##
 
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
