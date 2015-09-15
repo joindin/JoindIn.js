@@ -2,8 +2,14 @@
    "disallowDanglingUnderscores": true,
    "disallowIdentifierNames": [],
    "disallowImplicitTypeConversion": [],
-   "disallowKeywordsOnNewLine": ["else"],
-   "disallowKeywords": ["with"],
+   "disallowKeywordsOnNewLine": [
+      "catch",
+      "else"
+   ],
+   "disallowKeywords": [
+      "void",
+      "with"
+   ],
    "disallowMixedSpacesAndTabs": true,
    "disallowMultipleLineBreaks": true,
    "disallowMultipleLineStrings": true,
@@ -11,16 +17,13 @@
    "disallowMultipleVarDecl": "exceptUndefined",
    "disallowNewlineBeforeBlockStatements": true,
    "disallowPaddingNewlinesBeforeKeywords": [
-      "else",
       "case",
-      "catch",
       "typeof"
    ],
    "disallowPaddingNewlinesInBlocks": true,
    "disallowQuotedKeysInObjects": true,
    "disallowSpaceAfterKeywords": [
       "catch",
-      "do",
       "for",
       "switch",
       "while"
@@ -45,16 +48,29 @@
    },
    "requireCapitalizedConstructors": true,
    "requireCommaBeforeLineBreak": true,
-   "requireCurlyBraces": true,
+   "requireCurlyBraces": [
+      "catch",
+      "do",
+      "else",
+      "for",
+      "if",
+      "try",
+      "while"
+   ],
    "requireDollarBeforejQueryAssignment": true,
    "requireDotNotation": true,
+   "requireKeywordsOnNewLine": [
+      "break",
+      "case",
+      "default"
+   ],
    "requireLineBreakAfterVariableAssignment": true,
    "requireOperatorBeforeLineBreak": true,
    "requirePaddingNewLineAfterVariableDeclaration": true,
    "requirePaddingNewLinesAfterBlocks": {
       "allExcept": [
-         "inCallExpressions",
          "inArrayExpressions",
+         "inCallExpressions",
          "inProperties"
       ]
    },
@@ -63,14 +79,14 @@
    "requirePaddingNewlinesBeforeKeywords": [
       "do",
       "for",
+      "function",
       "if",
+      "return",
       "switch",
       "try",
       "void",
       "while",
-      "with",
-      "return",
-      "function"
+      "with"
    ],
    "requirePaddingNewLinesBeforeLineComments": {
       "allExcept": "firstAfterCurly"
@@ -80,15 +96,21 @@
    "requireSemicolons": true,
    "requireSpaceAfterBinaryOperators": true,
    "requireSpaceAfterKeywords": [
+      "case",
+      "do",
       "else",
       "if",
       "return",
-      "try"
+      "try",
+      "typeof"
    ],
    "requireSpaceAfterLineComment": true,
    "requireSpaceBeforeBinaryOperators": true,
    "requireSpaceBeforeBlockStatements": true,
-   "requireSpaceBeforeKeywords": ["else"],
+   "requireSpaceBeforeKeywords": [
+      "catch",
+      "else"
+   ],
    "requireSpaceBeforeObjectValues": true,
    "requireSpaceBetweenArguments": true,
    "requireSpacesInAnonymousFunctionExpression": {
