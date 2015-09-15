@@ -28,6 +28,5 @@
    "strict": true,
 
    "browser": true,
-   "node": true,
-   "jquery": true
+   "node": true
 }
