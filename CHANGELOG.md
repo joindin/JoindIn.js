@@ -1,6 +1,9 @@
 # 0.4.0-pre #
 
 * Added `grunt-compare-size` task to detect how much a change affects the size of the library
+* Added a code of conduct and call out in README
+* Updated `.jshintrc` to tweak the settings to check JavaScript code style 
+* Updated `.jscsrc` to tweak the settings to check the JavaScript code quality
 
 # 0.3.0 (30-05-2015) #
 
