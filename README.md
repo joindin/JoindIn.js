@@ -15,6 +15,7 @@ development of joind.in you agree to abide by its terms.
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
 ## Demo ##
+
 A live demo is available [here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
 ## Elements supported ##
@@ -25,6 +26,7 @@ The library supports the following elements:
 * Talk (`data-type="talk"`)
 * Comment (`data-type="talk-comment"`)
 * Event (`data-type="event"`)
+* Call for papers (`data-type="cfps"`)
 
 More elements will be integrated soon.
 
@@ -106,6 +108,14 @@ you have to add the following element to your page:
 <div class="joindin-embed" data-id="3094" data-type="event"></div>
 ```
 
+### Embedding the call for papers ###
+
+To embed the currently open call for papers, you have to add the following element to your page:
+
+```html
+<div class="joindin-embed" data-type="cfps"></div>
+```
+
 ### How to retrieve the ID of the element to embed ##
 
 Retrieving the ID of the element you want to embed is a bit tricky.
@@ -123,6 +133,8 @@ name set to the element wrapping each comment. For example, you can find a class
 
 The ID of an **event** can be found in the URL of the website. For example, the URL of the jsDay 2015
 is [https://joind.in/event/view/3094](https://joind.in/event/view/3094), so the ID is 3094.
+
+The **call for papers** widget doesn't require any ID. 
 
 ## Contribute ##
 

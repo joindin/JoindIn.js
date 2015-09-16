@@ -1,9 +1,12 @@
 # 0.4.0-pre #
 
+* [!] Added the possibility to embed the currently open **call for papers** (`data-type="cfps"`)  ([#1][])
 * Added `grunt-compare-size` task to detect how much a change affects the size of the library
 * Added a code of conduct and call out in README
 * Updated `.jshintrc` to tweak the settings to check JavaScript code style 
 * Updated `.jscsrc` to tweak the settings to check the JavaScript code quality
+
+[#1]: https://github.com/joindin/JoindIn.js/issues/4
 
 # 0.3.0 (30-05-2015) #
 

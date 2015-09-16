@@ -150,3 +150,78 @@
 {
    margin: 0;
 }
+
+/*********************
+         CFPs
+*********************/
+.joindin-cfps
+{
+   background: #FFFFFF;
+   border: 1px solid #DDDDDD;
+   border-radius: 5px;
+   display: inline-block;
+}
+
+.joindin-cfps ul
+{
+   list-style-type: none;
+   margin: 0;
+   max-height: 250px;
+   overflow: auto;
+   padding: 0;
+}
+
+.joindin-cfps li
+{
+   padding: 10px;
+}
+
+.joindin-cfps li:nth-child(2n)
+{
+   background-color: #F0F4F8;
+}
+
+.joindin-cfps li:after
+{
+   clear: both;
+   content: "";
+   display: table;
+}
+
+.joindin-cfps li + li
+{
+   margin-top: 10px;
+}
+
+.joindin-cfps .icon-wrapper
+{
+   display: inline-block;
+   float: left;
+   height: 48px;
+   margin-right: 15px;
+   width: 48px;
+}
+
+.joindin-cfps img
+{
+   max-width: 100%;
+}
+
+.joindin-cfps .info-wrapper
+{
+   overflow: hidden;
+}
+
+.joindin-cfps a
+{
+   color: #2368AF;
+   display: block;
+   margin-bottom: 5px;
+}
+
+.joindin-cfps h1
+{
+   font-size: 25px;
+   margin-bottom: 5px;
+   margin-top: 0;
+}

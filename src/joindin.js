@@ -3,6 +3,7 @@
 
    // Maps the data type defined as attributes to the corresponding type used by the API
    var dataTypeMap = {
+      cfps: 'cfps',
       event: 'events',
       speaker: 'users',
       talk: 'talks',
@@ -20,6 +21,9 @@
 
    // Defines the URL to show the rating image
    var ratingImageUrl = 'https://joind.in/inc/img/rating-RATING.gif';
+
+   // Defines the base URL for the icons of the events
+   var iconPath = 'https://joind.in/inc/img/event_icons/';
 
    // Stores the createElement function to improve the effect of the minification
    var createElement = document.createElement.bind(document);
@@ -153,6 +157,97 @@
    }
 
    /**
+    *
+    * @param element
+    * @param conference
+    */
+   function createCFP(element, conference) {
+      var icon, iconWrapper, infoWrapper, name, nameWrapper, website;
+
+      iconWrapper = createElement('div');
+      iconWrapper.className = 'icon-wrapper';
+
+      if (conference.icon) {
+         icon = setAttributes(
+            createElement('img'),
+            ['src'],
+            [iconPath + conference.icon]
+         );
+
+         iconWrapper.appendChild(icon);
+      }
+
+      infoWrapper = createElement('div');
+      infoWrapper.className = 'info-wrapper';
+
+      name = setProperties(
+         createElement('h1'),
+         ['textContent'],
+         [conference.name]
+      );
+
+      nameWrapper = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'innerHTML'
+         ],
+         [
+            conference.website_uri,
+            name.outerHTML
+         ]
+      );
+
+      website = setProperties(
+         createElement('a'),
+         [
+            'href',
+            'textContent'
+         ],
+         [
+            conference.href,
+            conference.href
+         ]
+      );
+
+      appendChildren(
+         infoWrapper,
+         [
+            nameWrapper,
+            website
+         ]
+      );
+
+      appendChildren(
+         element,
+         [
+            iconWrapper,
+            infoWrapper
+         ]
+      );
+   }
+
+   /**
+    *
+    * @param {HTMLElement} element
+    * @param {Object} data
+    */
+   function createCFPs(element, data) {
+      var list = createElement('ul');
+      var cfps = data.events.map(function(conference) {
+         var element = createElement('li');
+
+         createCFP(element, conference);
+
+         return element;
+      });
+
+      element.className += ' joindin-cfps';
+      appendChildren(list, cfps);
+      element.appendChild(list);
+   }
+
+   /**
     * Creates the elements for an event based on the provided data and
     * append them to the passed element.
     *
@@ -161,7 +256,6 @@
     */
    function createEvent(element, data) {
       var event, icon, name, nameWrapper, website, dateStart, dateEnd, description, additionalInfo;
-      var iconPath = 'https://joind.in/inc/img/event_icons/';
 
       event = data.events[0];
 
@@ -513,7 +607,10 @@
       var id = element.getAttribute('data-id');
       var url = urlAPI;
 
-      if (type === 'events') {
+      if (type === 'cfps') {
+         url += 'events?filter=cfp';
+         callbacks.push(createCFPs.bind(null, element));
+      } else if (type === 'events') {
          url += type + '/' + id;
          callbacks.push(createEvent.bind(null, element));
       } else if (type === 'talk_comments') {
