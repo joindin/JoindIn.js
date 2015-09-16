@@ -5,6 +5,7 @@
 * Added a code of conduct and call out in README
 * Updated `.jshintrc` to tweak the settings to check JavaScript code style 
 * Updated `.jscsrc` to tweak the settings to check the JavaScript code quality
+* Minor tweaks to the `joindin.css` file
 
 [#1]: https://github.com/joindin/JoindIn.js/issues/4
 
