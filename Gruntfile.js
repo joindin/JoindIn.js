@@ -71,6 +71,7 @@ module.exports = function (grunt) {
 
    grunt.registerTask('default', [
       'jshint',
+      'jscs',
       'uglify',
       'cssmin',
       'compare_size'
