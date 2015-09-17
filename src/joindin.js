@@ -63,7 +63,7 @@
    }
 
    /**
-    * Appends the provided children to the specified HTMLElement.
+    * Appends the provided children to the specified element.
     *
     * @param {HTMLElement} element
     * @param {HTMLElement[]} children
@@ -157,21 +157,22 @@
    }
 
    /**
+    * Injects into the element provided the information of the call for paper for a given event.
     *
     * @param element
-    * @param conference
+    * @param event
     */
-   function createCFP(element, conference) {
+   function createCFP(element, event) {
       var icon, iconWrapper, infoWrapper, name, nameWrapper, website;
 
       iconWrapper = createElement('div');
       iconWrapper.className = 'icon-wrapper';
 
-      if (conference.icon) {
+      if (event.icon) {
          icon = setAttributes(
             createElement('img'),
             ['src'],
-            [iconPath + conference.icon]
+            [iconPath + event.icon]
          );
 
          iconWrapper.appendChild(icon);
@@ -183,7 +184,7 @@
       name = setProperties(
          createElement('h1'),
          ['textContent'],
-         [conference.name]
+         [event.name]
       );
 
       nameWrapper = setProperties(
@@ -193,7 +194,7 @@
             'innerHTML'
          ],
          [
-            conference.website_uri,
+            event.website_uri,
             name.outerHTML
          ]
       );
@@ -205,8 +206,8 @@
             'textContent'
          ],
          [
-            conference.href,
-            conference.href
+            event.href,
+            event.href
          ]
       );
 
@@ -228,6 +229,8 @@
    }
 
    /**
+    * Creates the elements for the event having the call for papers currently open
+    * based on the provided data and append them to the passed element.
     *
     * @param {HTMLElement} element
     * @param {Object} data
