@@ -68,9 +68,12 @@ Once you have the CSS and the JavaScript file in place, you have to create one o
 you want to embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you
 create must use the class `joindin-embed` and define two `data-*` attributes:
 
-* `data-id`: the ID of the element you want to embed. To know how to retrieve the ID of an element read the
-section [How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);
-* `data-type`: [the type of the element](#elements-supported) to embed.
+* `data-id`: the ID of the element you want to embed. This attribute isn't required for all the widgets (e.g. the 
+call for papers widget). To know how to retrieve the ID of an element read the section
+[How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);
+* `data-type`: [the type of the element](#elements-supported) to embed. This attribute is required for all the widgets;
+* `data-theme`: specify the theme of the widget between [the themes available](#themes-available). This attribute is 
+optional.
 
 ### Embedding a speaker ###
 
@@ -87,6 +90,13 @@ you have to add the following element to your page:
 
 ```html
 <div class="joindin-embed" data-id="10889" data-type="talk"></div>
+```
+
+If you want to embed the same talk using [one of the themes available](#themes-available), for example Shark,
+you have to add the following element to your page:
+
+```html
+<div class="joindin-embed" data-id="10889" data-type="talk" data-theme="shark"></div>
 ```
 
 ### Embedding a comment of a talk ###
@@ -116,6 +126,13 @@ To embed the currently open call for papers, you have to add the following eleme
 <div class="joindin-embed" data-type="cfps"></div>
 ```
 
+If you want to embed the same talk using [one of the themes available](#themes-available), for example Picton,
+you have to add the following element to your page:
+
+```html
+<div class="joindin-embed" data-id="10889" data-type="talk" data-theme="picton"></div>
+```
+
 ### How to retrieve the ID of the element to embed ##
 
 Retrieving the ID of the element you want to embed is a bit tricky.
@@ -134,7 +151,17 @@ name set to the element wrapping each comment. For example, you can find a class
 The ID of an **event** can be found in the URL of the website. For example, the URL of the jsDay 2015
 is [https://joind.in/event/view/3094](https://joind.in/event/view/3094), so the ID is 3094.
 
-The **call for papers** widget doesn't require any ID. 
+The **call for papers** widget doesn't require any ID.
+ 
+## Themes available ##
+
+The library provides the following themes:
+
+* Grain (`data-theme="grain"`)
+* Picton (`data-theme="picton"`)
+* Shark (`data-theme="shark"`)
+
+To see them in action, take a look at the [demo](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
 ## Contribute ##
 

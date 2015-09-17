@@ -1,5 +1,6 @@
 # 0.4.0-pre #
 
+* [!] Added three themes to style the widgets: Grain, Picton, and Shark ([#5][])
 * [!] Added the possibility to embed the currently open **call for papers** (`data-type="cfps"`) ([#4][])
 * Added `grunt-compare-size` task to detect how much a change affects the size of the library
 * Added a code of conduct and call out in README
@@ -7,6 +8,7 @@
 * Updated `.jscsrc` to tweak the settings to check the JavaScript code quality
 * Minor tweaks to the `joindin.css` file
 
+[#5]: https://github.com/joindin/JoindIn.js/issues/5
 [#4]: https://github.com/joindin/JoindIn.js/issues/4
 
 # 0.3.0 (30-05-2015) #

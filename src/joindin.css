@@ -224,3 +224,81 @@
    margin-bottom: 5px;
    margin-top: 0;
 }
+
+/*********************
+        THEMES
+*********************/
+/* Grain */
+.joindin-speaker[data-theme="grain"],
+.joindin-talk-comment[data-theme="grain"],
+.joindin-talk[data-theme="grain"],
+.joindin-event[data-theme="grain"],
+.joindin-cfps[data-theme="grain"]
+{
+   background-color: #DDCBAF;
+   border-color: #A89B89;
+   color: #000000;
+}
+
+.joindin-speaker[data-theme="grain"] a,
+.joindin-talk[data-theme="grain"] a,
+.joindin-event[data-theme="grain"] a,
+.joindin-cfps[data-theme="grain"] a
+{
+   color: #000000;
+}
+
+.joindin-cfps[data-theme="grain"] li:nth-child(2n)
+{
+   background-color: #A89B89;
+}
+
+/* Picton */
+.joindin-speaker[data-theme="picton"],
+.joindin-talk-comment[data-theme="picton"],
+.joindin-talk[data-theme="picton"],
+.joindin-event[data-theme="picton"],
+.joindin-cfps[data-theme="picton"]
+{
+   background-color: #55ACEE;
+   border-color: #CCCCCC;
+   color: #FFFFFF;
+}
+
+.joindin-speaker[data-theme="picton"] a,
+.joindin-talk[data-theme="picton"] a,
+.joindin-event[data-theme="picton"] a,
+.joindin-cfps[data-theme="picton"] a
+{
+   color: #FFFFFF;
+}
+
+.joindin-cfps[data-theme="picton"] li:nth-child(2n)
+{
+   background-color: #D9534F;
+}
+
+/* Shark */
+.joindin-speaker[data-theme="shark"],
+.joindin-talk-comment[data-theme="shark"],
+.joindin-talk[data-theme="shark"],
+.joindin-event[data-theme="shark"],
+.joindin-cfps[data-theme="shark"]
+{
+   background: #2B2E36;
+   border-color: #B56B65;
+   color: #FFFFFF;
+}
+
+.joindin-speaker[data-theme="shark"] a,
+.joindin-talk[data-theme="shark"] a,
+.joindin-event[data-theme="shark"] a,
+.joindin-cfps[data-theme="shark"] a
+{
+   color: #FFFFFF;
+}
+
+.joindin-cfps[data-theme="shark"] li:nth-child(2n)
+{
+   background-color: #BB0000;
+}
