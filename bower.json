@@ -1,6 +1,6 @@
 {
    "name": "joindin-js",
-   "version": "0.4.0-pre",
+   "version": "0.4.0",
    "main": ["src/joindin.js", "src/joindin.css"],
    "author": {
       "name": "Aurelio De Rosa",

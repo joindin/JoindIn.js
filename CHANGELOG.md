@@ -1,4 +1,4 @@
-# 0.4.0-pre #
+# 0.4.0 (17-09-2015) #
 
 * [!] Added three themes to style the widgets: Grain, Picton, and Shark ([#5][])
 * [!] Added the possibility to embed the currently open **call for papers** (`data-type="cfps"`) ([#4][])
