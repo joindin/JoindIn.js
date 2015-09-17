@@ -132,6 +132,10 @@
       var definitionList = createElement('dl');
 
       for(var term in map) {
+         if (!map.hasOwnProperty(term)) {
+            continue;
+         }
+
          definitionTerm = setProperties(
             createElement('dt'),
             ['textContent'],
