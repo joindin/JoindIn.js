@@ -1,4 +1,4 @@
-(function (window, document) {
+(function(window, document) {
    'use strict';
 
    // Maps the data type defined as attributes to the corresponding type used by the API
