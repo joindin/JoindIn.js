@@ -6,6 +6,7 @@
 * [!] Rating image doesn't overlap the text anymore ([#8][])
 * Updated dev dependencies
 * Updated `Gruntfile.js` to split the default task in multiple, smaller tasks
+* Updated `.jscsrc` to tweak the settings to check the JavaScript code style
 
 [#9]: https://github.com/joindin/JoindIn.js/issues/9
 [#8]: https://github.com/joindin/JoindIn.js/issues/8
@@ -16,8 +17,8 @@
 * [!] Added the possibility to embed the currently open **call for papers** (`data-type="cfps"`) ([#4][])
 * Added `grunt-compare-size` task to detect how much a change affects the size of the library
 * Added a code of conduct and call out in README
-* Updated `.jshintrc` to tweak the settings to check JavaScript code style 
-* Updated `.jscsrc` to tweak the settings to check the JavaScript code quality
+* Updated `.jshintrc` to tweak the settings to check JavaScript code quality 
+* Updated `.jscsrc` to tweak the settings to check the JavaScript code style
 * Minor tweaks to the `joindin.css` file
 
 [#5]: https://github.com/joindin/JoindIn.js/issues/5
