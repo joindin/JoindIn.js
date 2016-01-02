@@ -1,7 +1,8 @@
 module.exports = function (grunt) {
    'use strict';
 
-   require('load-grunt-tasks')(grunt);
+   require('time-grunt')(grunt);
+   require('jit-grunt')(grunt);
 
    var config = {
       src: 'src',
