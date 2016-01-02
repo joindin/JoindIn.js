@@ -1,4 +1,12 @@
-# 0.4.0 (17-09-2015) #
+# Changelog
+
+# Next
+
+* [!} Replaced JSONP with CORS ([#9][])
+
+[#9]: https://github.com/joindin/JoindIn.js/issues/9
+
+# 0.4.0 (17-09-2015)
 
 * [!] Added three themes to style the widgets: Grain, Picton, and Shark ([#5][])
 * [!] Added the possibility to embed the currently open **call for papers** (`data-type="cfps"`) ([#4][])
@@ -11,7 +19,7 @@
 [#5]: https://github.com/joindin/JoindIn.js/issues/5
 [#4]: https://github.com/joindin/JoindIn.js/issues/4
 
-# 0.3.0 (30-05-2015) #
+# 0.3.0 (30-05-2015)
 
 * [!] Moved the style to an external style sheet ([#1][])
 * [!] Added the possibility to embed an **event** (`data-type="event"`)
@@ -21,12 +29,13 @@
 
 [#1]: https://github.com/joindin/JoindIn.js/issues/1
 
-# 0.2.0 (08-10-2014) #
+# 0.2.0 (08-10-2014)
 
 * [!] Added the possibility to embed a **speaker** profile (`data-type="speaker"`)
-* [!] Changed the allowed values for the `data-type` attribute. The currently supported ones are: `speaker`, `talk` (was `talks`), and `talk-comment` (was `talk_comments`)
+* [!] Changed the allowed values for the `data-type` attribute. The currently supported ones are: `speaker`, `talk`
+(was `talks`), and `talk-comment` (was `talk_comments`)
 * Removed unneeded `div` wrappers inside the placeholder elements
 
-# 0.1.0 (03-08-2014) #
+# 0.1.0 (03-08-2014)
 
 * First public release

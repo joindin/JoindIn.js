@@ -13,9 +13,6 @@
    // Defines the class the serves as a hook to select elements
    var joindInClass = '.joindin-embed';
 
-   // Contains the callbacks to execute, one for each JoindIn embedded element defined in the page
-   var callbacks = [];
-
    // Defines the base URL to call the JoindIn API
    var urlAPI = 'http://api.joind.in/v2.1/';
 
@@ -604,6 +601,45 @@
    }
 
    /**
+    * The callback called in case of success or failure of the HTTP request
+    *
+    * @callback requestCallback
+    *
+    * @param {XMLHttpRequest} xhr
+    */
+
+   /**
+    * Performs a GET request on the specified URL
+    *
+    * @param {string} url The URL to reach
+    * @param {requestCallback} [callback] A callback to execute on success or failure
+    */
+   function get(url, callback) {
+      if (!callback) {
+         callback = function() {};
+      }
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', function() {
+         if (xhr.readyState < 4) {
+            return;
+         }
+
+         if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+            callback(xhr);
+
+            return;
+         }
+
+         callback(xhr);
+      });
+
+      xhr.open('GET', url, true);
+      xhr.send();
+   }
+
+   /**
     * Adds a new callback to the queue for the element provided.
     *
     * @param {HTMLElement} element
@@ -613,31 +649,30 @@
       var type = dataTypeMap[element.getAttribute('data-type')];
       var id = element.getAttribute('data-id');
       var url = urlAPI;
+      var callback;
 
       if (type === 'cfps') {
          url += 'events?filter=cfp';
-         callbacks.push(createCFPs.bind(null, element));
+         callback = createCFPs;
       } else if (type === 'events') {
          url += type + '/' + id;
-         callbacks.push(createEvent.bind(null, element));
+         callback = createEvent;
       } else if (type === 'talk_comments') {
          url += type + '/' + id;
-         callbacks.push(createTalkComment.bind(null, element));
+         callback = createTalkComment;
       } else if (type === 'talks') {
          url += type + '/' + id;
-         callbacks.push(createTalk.bind(null, element));
+         callback = createTalk;
       } else if (type === 'users') {
          url += type + '/' + id + '/talks';
-         callbacks.push(createSpeaker.bind(null, element));
+         callback = createSpeaker;
       } else {
          throw new Error('Data type not recognized');
       }
 
-      var script = createElement('script');
-
-      script.src = url + '?format=json&callback=JoindIn.callbacks[' + (callbacks.length - 1) + ']';
-      document.head.appendChild(script);
-      document.head.removeChild(script);
+      get(url + '?format=json', function(xhr) {
+         callback(element, JSON.parse(xhr.response));
+      });
    }
 
    // Adds a callback for every embedded element
@@ -645,9 +680,4 @@
       document.querySelectorAll(joindInClass),
       createCallback
    );
-
-   // Exposes the callbacks outside the IIFE
-   window.JoindIn = {
-      callbacks: callbacks
-   };
 })(window, document);
