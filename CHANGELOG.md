@@ -3,8 +3,10 @@
 # Next
 
 * [!} Replaced JSONP with CORS ([#9][])
+* [!] Rating image doesn't overlap the text anymore ([#8][])
 
 [#9]: https://github.com/joindin/JoindIn.js/issues/9
+[#8]: https://github.com/joindin/JoindIn.js/issues/8
 
 # 0.4.0 (17-09-2015)
 

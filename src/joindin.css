@@ -56,6 +56,11 @@
    width: 140px;
 }
 
+.joindin-talk-comment .rating-wrapper img
+{
+   max-width: 95%;
+}
+
 .joindin-talk-comment .text-wrapper
 {
    overflow: hidden;
