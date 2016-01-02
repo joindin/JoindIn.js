@@ -5,6 +5,7 @@
 * [!} Replaced JSONP with CORS ([#9][])
 * [!] Rating image doesn't overlap the text anymore ([#8][])
 * Updated dev dependencies
+* Updated `Gruntfile.js` to split the default task in multiple, smaller tasks
 
 [#9]: https://github.com/joindin/JoindIn.js/issues/9
 [#8]: https://github.com/joindin/JoindIn.js/issues/8

@@ -66,11 +66,19 @@ module.exports = function (grunt) {
       }
    });
 
-   grunt.registerTask('default', [
+   grunt.registerTask('lint', [
       'jshint',
-      'jscs',
+      'jscs'
+   ]);
+
+   grunt.registerTask('build', [
       'uglify',
       'cssmin',
       'compare_size'
+   ]);
+
+   grunt.registerTask('default', [
+      'lint',
+      'build'
    ]);
 };
