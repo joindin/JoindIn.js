@@ -3,7 +3,7 @@
 # 0.5.0 (03-01-2016)
 
 * [!] The library is not executed on load anymore ([#11][])
-* [!} Replaced JSONP with CORS ([#9][])
+* [!] Replaced JSONP with CORS ([#9][])
 * [!] Rating image doesn't overlap the text anymore ([#8][])
 * [!] Implemented the UMD pattern ([#6][])
 * Updated dev dependencies
