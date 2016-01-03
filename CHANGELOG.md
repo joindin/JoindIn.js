@@ -1,6 +1,6 @@
 # Changelog
 
-# Next
+# 0.5.0 (03-01-2016)
 
 * [!] The library is not executed on load anymore ([#11][])
 * [!} Replaced JSONP with CORS ([#9][])

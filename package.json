@@ -1,6 +1,6 @@
 {
   "name": "joindin-js",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "The official JavaScript library to embed Joind.in comments, talks, and more.",
   "main": "src/joindin.js",
   "repository": {
