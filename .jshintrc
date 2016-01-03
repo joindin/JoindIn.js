@@ -27,5 +27,6 @@
    "strict": true,
 
    "browser": true,
-   "node": true
+   "node": true,
+   "dojo": true
 }
