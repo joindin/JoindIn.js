@@ -1,12 +1,30 @@
 {
   "name": "joindin-js",
   "version": "0.4.0",
-  "author": {
-    "name": "Aurelio De Rosa",
-    "email": "a.derosa@audero.it",
-    "web": "http://www.audero.it"
-  },
   "description": "The official JavaScript library to embed Joind.in comments, talks, and more.",
+  "main": "src/joindin.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joindin/JoindIn.js.git"
+  },
+  "keywords": [
+    "joind.in",
+    "joind",
+    "javascript",
+    "library",
+    "umd"
+  ],
+  "author": "Aurelio De Rosa <a.derosa@audero.it> (http://audero.it)",
+  "contributors": [
+    {
+      "name": "Aurelio De Rosa",
+      "email": "a.derosa@audero.it",
+      "url": "http://audero.it"
+    }
+  ],
+  "license": "(MIT OR GPL-3.0)",
+  "bugs": "https://github.com/joindin/JoindIn.js/issues",
+  "homepage": "https://github.com/joindin/JoindIn.js",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
