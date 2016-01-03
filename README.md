@@ -22,6 +22,95 @@ seamlessly with module systems such as AMD and CommonJS, and the browser.
 A live demo is available
 [here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
+## Installation
+
+You can install JoindIn.js by using [npm](https://www.npmjs.com):
+
+```
+npm install joindin-js
+```
+
+Alternatively, you can install it via [Bower](http://bower.io):
+
+```
+bower install joindin-js
+```
+
+The last options you have to download the library are to clone the repository and copy the files contained in the 
+`dist` folder into your project and to manually download the files.
+
+## Usage
+
+Once you have obtained the library, you have to create one or more DOM elements for every element you want to embed:
+talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you create must use 
+the class `joindin-embed` and define two `data-*` attributes:
+
+* `data-id`: the ID of the element you want to embed. This attribute isn't required for all the widgets (e.g. the 
+call for papers widget). To know how to retrieve the ID of an element read the section
+[How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);
+* `data-type`: [the type of the element](#elements-supported) to embed. This attribute is required for all the widgets;
+* `data-theme`: specify the theme of the widget between [the themes available](#themes-available). This attribute is 
+optional.
+
+An example of element that meets these requirements is the following:
+
+```html
+<div class="joindin-embed" data-id="10889" data-type="talk"></div>
+```
+
+With the element(s) in place, you have to include the CSS file provided. It should be placed in the `head` of your web 
+page. If you used Bower, you can include it as shown below:
+
+```html
+<head>
+   <link rel="stylesheet" href="bower_components/joindin-js/dist/joindin.min.css" />
+```
+
+At this point, you have to include the JavaScript file.
+
+If the library has been downloaded with Bower, you can include it as shown below:
+                                    
+```html
+   <script src="bower_components/joindin-js/dist/joindin.min.js"></script>
+</body>
+```
+
+For those that obtained the library via npm, how you include it depends on the module system in use, if any.
+
+### Browserify
+
+```js
+var JoindIn = require('joindin-js');
+// Call JoindIn methods
+```
+
+### RequireJS
+
+```js
+require(['joindin-js'], function(JoindIn) {
+	// Call JoindIn methods
+});
+```
+
+### No module system
+
+```html
+   <script src="node_modules/joindin-js/dist/joindin.min.js"></script>
+   <script>
+      // Call JoindIn methods
+   </script>
+</body>
+```
+
+## Methods
+
+JoindIn.js provides the methods described in the following sections.
+
+### `init()`
+
+The `init()` method parses the DOM to find all the elements of the type described in the [Usage](#usage) section and 
+transform them into the relevant widget.
+
 ## Elements supported
 
 The library supports the following elements:
@@ -34,51 +123,7 @@ The library supports the following elements:
 
 More elements will be integrated soon.
 
-## Installation
-
-You can install JoindIn.js using [Bower](http://bower.io):
-
-```
-bower install joindin-js
-```
-
-Then, include the CSS file in your web page as shown below:
-
-```html
-<link rel="stylesheet" href="bower_components/joindin-js/dist/joindin.min.css" />
-```
-
-And also the JavaScript file:
-
-```html
-<script src="bower_components/joindin-js/dist/joindin.min.js" defer async></script>
-```
-
-**Note**: the `defer` (for Internet Explorer 9) and the `async` (for modern browsers) attributes aren't necessary but
-[can improve the performance of your website](https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/).
-
-If you don't have or you don't want to use Bower, you can clone this repository running the command:
-
-```
-git clone https://github.com/joindin/JoindIn.js.git
-```
-
-and copy the files contained in the `dist` folder into your project.
-
-The last option you have is to manually download the library.
-
-## Usage
-
-Once you have the CSS and the JavaScript file in place, you have to create one or more DOM elements for every element 
-you want to embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you
-create must use the class `joindin-embed` and define two `data-*` attributes:
-
-* `data-id`: the ID of the element you want to embed. This attribute isn't required for all the widgets (e.g. the 
-call for papers widget). To know how to retrieve the ID of an element read the section
-[How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);
-* `data-type`: [the type of the element](#elements-supported) to embed. This attribute is required for all the widgets;
-* `data-theme`: specify the theme of the widget between [the themes available](#themes-available). This attribute is 
-optional.
+In the following sections you can learn how to embed the elements supported.
 
 ### Embedding a speaker
 
