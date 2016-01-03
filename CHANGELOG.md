@@ -4,12 +4,14 @@
 
 * [!} Replaced JSONP with CORS ([#9][])
 * [!] Rating image doesn't overlap the text anymore ([#8][])
+* [!] Implemented the UMD pattern ([#6][])
 * Updated dev dependencies
 * Updated `Gruntfile.js` to split the default task in multiple, smaller tasks
 * Updated `.jscsrc` to tweak the settings to check the JavaScript code style
 
 [#9]: https://github.com/joindin/JoindIn.js/issues/9
 [#8]: https://github.com/joindin/JoindIn.js/issues/8
+[#6]: https://github.com/joindin/JoindIn.js/issues/6
 
 # 0.4.0 (17-09-2015)
 

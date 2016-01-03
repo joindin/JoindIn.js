@@ -1,4 +1,12 @@
-(function(window, document) {
+(function(root, factory) {
+   if (typeof define === 'function' && define.amd) {
+      define(factory);
+   } else if (typeof module === 'object' && module.exports) {
+      module.exports = factory();
+   } else {
+      factory();
+   }
+}(this, function() {
    'use strict';
 
    // Maps the data type defined as attributes to the corresponding type used by the API
@@ -680,4 +688,4 @@
       document.querySelectorAll(joindInClass),
       createCallback
    );
-})(window, document);
+}));

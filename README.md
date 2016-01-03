@@ -14,6 +14,9 @@ development of joind.in you agree to abide by its terms.
 
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
+JoindIn.js follows the [UMD (Universal Module Definition)](https://github.com/umdjs/umd) pattern to work
+seamlessly with module systems such as AMD and CommonJS, and the browser.
+
 ## Demo ##
 
 A live demo is available [here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
