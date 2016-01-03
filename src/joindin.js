@@ -1,10 +1,12 @@
 (function(root, factory) {
+   'use strict';
+
    if (typeof define === 'function' && define.amd) {
       define(factory);
    } else if (typeof module === 'object' && module.exports) {
       module.exports = factory();
    } else {
-      factory();
+      root.JoindIn = factory();
    }
 }(this, function() {
    'use strict';
@@ -683,9 +685,17 @@
       });
    }
 
-   // Adds a callback for every embedded element
-   [].forEach.call(
-      document.querySelectorAll(joindInClass),
-      createCallback
-   );
+   /**
+    * Executes the library
+    */
+   function init() {
+      [].forEach.call(
+         document.querySelectorAll(joindInClass),
+         createCallback
+      );
+   }
+
+   return {
+      init: init
+   };
 }));

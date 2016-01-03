@@ -2,6 +2,7 @@
 
 # Next
 
+* [!] The library is not executed on load anymore ([#11][])
 * [!} Replaced JSONP with CORS ([#9][])
 * [!] Rating image doesn't overlap the text anymore ([#8][])
 * [!] Implemented the UMD pattern ([#6][])
@@ -9,6 +10,7 @@
 * Updated `Gruntfile.js` to split the default task in multiple, smaller tasks
 * Updated `.jscsrc` to tweak the settings to check the JavaScript code style
 
+[#11]: https://github.com/joindin/JoindIn.js/issues/11
 [#9]: https://github.com/joindin/JoindIn.js/issues/9
 [#8]: https://github.com/joindin/JoindIn.js/issues/8
 [#6]: https://github.com/joindin/JoindIn.js/issues/6
