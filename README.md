@@ -1,27 +1,28 @@
-# JoindIn.js #
+# JoindIn.js
 
-[JoindIn.js](https://github.com/joindin/JoindIn.js) is the official JavaScript library to embed [Joind.in](http://joind.in)
-comments, talks, and more. The library is written in plain JavaScript, so it has no dependencies.
+[JoindIn.js](https://github.com/joindin/JoindIn.js) is the official JavaScript library to embed
+[Joind.in](http://joind.in) comments, talks, and more.
 
-## Welcome ##
+## Welcome
 
 Joind.in welcomes all contributors regardless of your ability or experience. We especially welcome you if you are new
 to Open Source development and will provide a helping hand. To ensure that everyone understands what we expect from
 our community, our projects have a [Contributor Code of Conduct](CODE_OF_CONDUCT.md) and by participating in the 
 development of joind.in you agree to abide by its terms.
 
-## Compatibility ##
+## Compatibility
 
 JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chrome, Opera, Firefox, and Safari.
 
-JoindIn.js follows the [UMD (Universal Module Definition)](https://github.com/umdjs/umd) pattern to work
+The library follows the [UMD (Universal Module Definition)](https://github.com/umdjs/umd) pattern to work
 seamlessly with module systems such as AMD and CommonJS, and the browser.
 
-## Demo ##
+## Demo
 
-A live demo is available [here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
+A live demo is available
+[here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
-## Elements supported ##
+## Elements supported
 
 The library supports the following elements:
 
@@ -33,11 +34,11 @@ The library supports the following elements:
 
 More elements will be integrated soon.
 
-## Installation ##
+## Installation
 
 You can install JoindIn.js using [Bower](http://bower.io):
 
-```shell
+```
 bower install joindin-js
 ```
 
@@ -53,11 +54,12 @@ And also the JavaScript file:
 <script src="bower_components/joindin-js/dist/joindin.min.js" defer async></script>
 ```
 
-**Note**: the `defer` (for Internet Explorer 9) and the `async` (for modern browsers) attributes aren't necessary but [can improve the performance of your website](https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/).
+**Note**: the `defer` (for Internet Explorer 9) and the `async` (for modern browsers) attributes aren't necessary but
+[can improve the performance of your website](https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/).
 
 If you don't have or you don't want to use Bower, you can clone this repository running the command:
 
-```shell
+```
 git clone https://github.com/joindin/JoindIn.js.git
 ```
 
@@ -65,7 +67,7 @@ and copy the files contained in the `dist` folder into your project.
 
 The last option you have is to manually download the library.
 
-## Usage ##
+## Usage
 
 Once you have the CSS and the JavaScript file in place, you have to create one or more DOM elements for every element 
 you want to embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you
@@ -78,7 +80,7 @@ call for papers widget). To know how to retrieve the ID of an element read the s
 * `data-theme`: specify the theme of the widget between [the themes available](#themes-available). This attribute is 
 optional.
 
-### Embedding a speaker ###
+### Embedding a speaker
 
 To embed [my profile](https://joind.in/user/view/25190), you have to add the following element to your page:
 
@@ -86,7 +88,7 @@ To embed [my profile](https://joind.in/user/view/25190), you have to add the fol
 <div class="joindin-embed" data-id="25190" data-type="speaker"></div>
 ```
 
-### Embedding a talk ###
+### Embedding a talk
 
 To embed my talk "[Modern front-end with the eyes of a PHP developer](https://joind.in/talk/view/10889)",
 you have to add the following element to your page:
@@ -102,7 +104,7 @@ you have to add the following element to your page:
 <div class="joindin-embed" data-id="10889" data-type="talk" data-theme="shark"></div>
 ```
 
-### Embedding a comment of a talk ###
+### Embedding a comment of a talk
 
 To embed a specific comment published on the same talk, you have to add the following element instead:
 
@@ -112,7 +114,7 @@ To embed a specific comment published on the same talk, you have to add the foll
 
 Note that in this case the ID refers to the comment, not the talk.
 
-### Embedding an event ###
+### Embedding an event
 
 To embed the [jsDay 2015](https://joind.in/event/view/3094) event,
 you have to add the following element to your page:
@@ -121,7 +123,7 @@ you have to add the following element to your page:
 <div class="joindin-embed" data-id="3094" data-type="event"></div>
 ```
 
-### Embedding the call for papers ###
+### Embedding the call for papers
 
 To embed the currently open call for papers, you have to add the following element to your page:
 
@@ -136,7 +138,7 @@ you have to add the following element to your page:
 <div class="joindin-embed" data-id="10889" data-type="talk" data-theme="picton"></div>
 ```
 
-### How to retrieve the ID of the element to embed ##
+### How to retrieve the ID of the element to embed
 
 Retrieving the ID of the element you want to embed is a bit tricky.
 
@@ -156,7 +158,7 @@ is [https://joind.in/event/view/3094](https://joind.in/event/view/3094), so the 
 
 The **call for papers** widget doesn't require any ID.
  
-## Themes available ##
+## Themes available
 
 The library provides the following themes:
 
@@ -164,19 +166,14 @@ The library provides the following themes:
 * Picton (`data-theme="picton"`)
 * Shark (`data-theme="shark"`)
 
-To see them in action, take a look at the [demo](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
+To see them in action, take a look at the
+[demo](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
-## Contribute ##
-
-I'd love the contribution of anyone who is keen to help. Report a bug, fix a issue, suggest a feature:
-any contribution to improve the project is highly appreciated. If you're uncertain whether an addition should be
-made, feel free to open up an issue so we can discuss it.
-
-## License ##
+## License
 
 JoindIn.js is dual licensed under [MIT](http://www.opensource.org/licenses/MIT) and
 [GPL-3.0](http://opensource.org/licenses/GPL-3.0)
 
-## Author ##
+## Author
 
 [Aurelio De Rosa](http://www.audero.it) ([@AurelioDeRosa](https://twitter.com/AurelioDeRosa))
