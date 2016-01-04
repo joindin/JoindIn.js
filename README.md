@@ -125,7 +125,7 @@ its ID `target`, you have to write:
 JoindIn.createWidget(
    {
       id: 25190,
-      type: speaker
+      type: 'speaker'
    },
    function(widget) {
       // Do something with widget
