@@ -9,7 +9,30 @@
       root.JoindIn = factory();
    }
 }(this, function() {
+   /**
+    * @typedef DataHash
+    * @type {Object}
+    * @property {string} type The type of the widget
+    * @property {(number|string)} [id] The ID of the widget
+    * @property {string} [theme] The theme to use
+    */
    'use strict';
+
+   /**
+    * The callback called in case of success or failure of the HTTP request
+    *
+    * @callback requestCallback
+    *
+    * @param {XMLHttpRequest} xhr
+    */
+
+   /**
+    * The callback called after the creation of the widget
+    *
+    * @callback userCallback
+    *
+    * @param {HTMLElement} element
+    */
 
    // Maps the data type defined as attributes to the corresponding type used by the API
    var dataTypeMap = {
@@ -36,11 +59,11 @@
    var createElement = document.createElement.bind(document);
 
    /**
-    * Sets the attributes of the passed HTMLElement to the given values.
+    * Sets the attributes of the passed element to the given values
     *
-    * @param {HTMLElement} element
-    * @param {Array} attributes
-    * @param {Array} values
+    * @param {HTMLElement} element The element in which the attributes will be set
+    * @param {string[]} attributes The attributes to set
+    * @param {string[]} values The values of the attributes to set
     *
     * @returns {HTMLElement}
     */
@@ -53,11 +76,11 @@
    }
 
    /**
-    * Sets the properties of the passed HTMLElement to the given values.
+    * Sets the properties of the passed element to the given values
     *
-    * @param {HTMLElement} element
-    * @param {Array} properties
-    * @param {Array} values
+    * @param {HTMLElement} element The element in which the properties will be set
+    * @param {string[]} properties The properties to set
+    * @param {string[]} values The values of the properties to set
     *
     * @returns {HTMLElement}
     */
@@ -70,10 +93,10 @@
    }
 
    /**
-    * Appends the provided children to the specified element.
+    * Appends the provided children to the specified element
     *
-    * @param {HTMLElement} element
-    * @param {HTMLElement[]} children
+    * @param {HTMLElement} element The element used as the parent
+    * @param {HTMLElement[]} children The elements to append
     *
     * @returns {HTMLElement}
     */
@@ -86,9 +109,9 @@
    }
 
    /**
-    * Calculates the average of the values provided.
+    * Calculates the average of the values provided
     *
-    * @param {number[]} values
+    * @param {number[]} values The values to use to calculate the average
     *
     * @returns {number}
     */
@@ -107,9 +130,40 @@
    }
 
    /**
-    * Creates an img element representing the rate of a given element.
+    * Performs a GET request on the specified URL
     *
-    * @param {number} rate
+    * @param {string} url The URL to reach
+    * @param {requestCallback} [callback] A callback to execute on success or failure
+    */
+   function get(url, callback) {
+      if (!callback) {
+         callback = function() {};
+      }
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', function() {
+         if (xhr.readyState < 4) {
+            return;
+         }
+
+         if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+            callback(xhr);
+
+            return;
+         }
+
+         callback(xhr);
+      });
+
+      xhr.open('GET', url, true);
+      xhr.send();
+   }
+
+   /**
+    * Creates an img element representing the rate of a given element
+    *
+    * @param {number} rate The rate of the element
     *
     * @returns {HTMLElement}
     */
@@ -128,9 +182,9 @@
    }
 
    /**
-    * Creates a definition list element based on the key-value pairs provided.
+    * Creates a definition list element based on the key-value pairs provided
     *
-    * @param {Object} map
+    * @param {Object} map The key-value pairs to use
     *
     * @returns {HTMLElement}
     */
@@ -168,22 +222,23 @@
    }
 
    /**
-    * Injects into the element provided the information of the call for paper for a given event.
+    * Injects into the element provided the information of the call
+    * for paper for a given event
     *
-    * @param element
-    * @param event
+    * @param {HTMLElement} element The element in which the CFP element will be created
+    * @param {Object} data The data about the event
     */
-   function createCFP(element, event) {
+   function createCFPElement(element, data) {
       var icon, iconWrapper, infoWrapper, name, nameWrapper, website;
 
       iconWrapper = createElement('div');
       iconWrapper.className = 'icon-wrapper';
 
-      if (event.icon) {
+      if (data.icon) {
          icon = setAttributes(
             createElement('img'),
             ['src'],
-            [iconPath + event.icon]
+            [iconPath + data.icon]
          );
 
          iconWrapper.appendChild(icon);
@@ -195,7 +250,7 @@
       name = setProperties(
          createElement('h1'),
          ['textContent'],
-         [event.name]
+         [data.name]
       );
 
       nameWrapper = setProperties(
@@ -205,7 +260,7 @@
             'innerHTML'
          ],
          [
-            event.website_uri,
+            data.website_uri,
             name.outerHTML
          ]
       );
@@ -217,8 +272,8 @@
             'textContent'
          ],
          [
-            event.href,
-            event.href
+            data.href,
+            data.href
          ]
       );
 
@@ -241,17 +296,17 @@
 
    /**
     * Creates the elements for the event having the call for papers currently open
-    * based on the provided data and append them to the passed element.
+    * based on the provided data and append them to the passed element
     *
-    * @param {HTMLElement} element
-    * @param {Object} data
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {Object} data The data about the widget retrieved from the API
     */
-   function createCFPs(element, data) {
+   function createCFPsElement(element, data) {
       var list = createElement('ul');
       var cfps = data.events.map(function(conference) {
          var element = createElement('li');
 
-         createCFP(element, conference);
+         createCFPElement(element, conference);
 
          return element;
       });
@@ -263,12 +318,12 @@
 
    /**
     * Creates the elements for an event based on the provided data and
-    * append them to the passed element.
+    * append them to the passed element
     *
-    * @param {HTMLElement} element
-    * @param {Object} data
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {Object} data The data about the widget retrieved from the API
     */
-   function createEvent(element, data) {
+   function createEventElement(element, data) {
       var event, icon, name, nameWrapper, website, dateStart, dateEnd, description, additionalInfo;
 
       event = data.events[0];
@@ -370,10 +425,10 @@
     * Creates the elements for a speaker based on the provided data and
     * append them to the passed element.
     *
-    * @param {HTMLElement} element
-    * @param {Object} data
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {Object} data The data about the widget retrieved from the API
     */
-   function createSpeaker(element, data) {
+   function createSpeakerElement(element, data) {
       var name, nameWrapper, rating, speaker, talks;
       var speakerUrl = 'http://joind.in/user/view/';
 
@@ -430,10 +485,10 @@
     * Creates the elements for a talk comment based on the provided data and
     * append them to the passed element.
     *
-    * @param {HTMLElement} element
-    * @param {Object} data
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {Object} data The data about the widget retrieved from the API
     */
-   function createTalkComment(element, data) {
+   function createTalkCommentElement(element, data) {
       var comment, blockquote, footer, ratingWrapper, text, textWrapper, user, date, rating;
 
       comment = data.comments[0];
@@ -554,10 +609,10 @@
     * Creates the elements for a talk based on the provided data and
     * append them to the passed element.
     *
-    * @param {HTMLElement} element
-    * @param {Object} data
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {Object} data The data about the widget retrieved from the API
     */
-   function createTalk(element, data) {
+   function createTalkElement(element, data) {
       var talk, title, titleWrapper, description, author, rating;
 
       talk = data.talks[0];
@@ -611,91 +666,104 @@
    }
 
    /**
-    * The callback called in case of success or failure of the HTTP request
+    * Creates a new element that contains the information shown by a widget
     *
-    * @callback requestCallback
+    * @param {DataHash} data The data of the widget
     *
-    * @param {XMLHttpRequest} xhr
+    * @returns {HTMLElement}
     */
-
-   /**
-    * Performs a GET request on the specified URL
-    *
-    * @param {string} url The URL to reach
-    * @param {requestCallback} [callback] A callback to execute on success or failure
-    */
-   function get(url, callback) {
-      if (!callback) {
-         callback = function() {};
-      }
-
-      var xhr = new XMLHttpRequest();
-
-      xhr.addEventListener('readystatechange', function() {
-         if (xhr.readyState < 4) {
-            return;
-         }
-
-         if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-            callback(xhr);
-
-            return;
-         }
-
-         callback(xhr);
-      });
-
-      xhr.open('GET', url, true);
-      xhr.send();
+   function createWidgetElement(data) {
+      return setAttributes(
+         createElement('div'),
+         [
+            'className',
+            'data-id',
+            'data-type',
+            'data-theme'
+         ],
+         [
+            'joindin-embed joindin-' + data.type,
+            data.id,
+            data.type,
+            data.theme
+         ]
+      );
    }
 
    /**
-    * Adds a new callback to the queue for the element provided.
+    * Retrieves the information of the widget and inject them into the provided element
     *
-    * @param {HTMLElement} element
+    * @param {HTMLElement} element The element in which the widget will be created
+    * @param {DataHash} data The data of the widget to create
+    * @param {userCallback} [callback] The callback executed when the widget is created
     */
-   function createCallback(element) {
-      // Use getAttribute() instead of the Dataset API to support IE 9-10
-      var type = dataTypeMap[element.getAttribute('data-type')];
-      var id = element.getAttribute('data-id');
+   function widget(element, data, callback) {
       var url = urlAPI;
-      var callback;
+      var createWidgetFunction;
 
-      if (type === 'cfps') {
+      if (data.type === 'cfps') {
          url += 'events?filter=cfp';
-         callback = createCFPs;
-      } else if (type === 'events') {
-         url += type + '/' + id;
-         callback = createEvent;
-      } else if (type === 'talk_comments') {
-         url += type + '/' + id;
-         callback = createTalkComment;
-      } else if (type === 'talks') {
-         url += type + '/' + id;
-         callback = createTalk;
-      } else if (type === 'users') {
-         url += type + '/' + id + '/talks';
-         callback = createSpeaker;
+         createWidgetFunction = createCFPsElement;
+      } else if (data.type === 'events') {
+         url += data.type + '/' + data.id;
+         createWidgetFunction = createEventElement;
+      } else if (data.type === 'talk_comments') {
+         url += data.type + '/' + data.id;
+         createWidgetFunction = createTalkCommentElement;
+      } else if (data.type === 'talks') {
+         url += data.type + '/' + data.id;
+         createWidgetFunction = createTalkElement;
+      } else if (data.type === 'users') {
+         url += data.type + '/' + data.id + '/talks';
+         createWidgetFunction = createSpeakerElement;
       } else {
          throw new Error('Data type not recognized');
       }
 
       get(url + '?format=json', function(xhr) {
-         callback(element, JSON.parse(xhr.response));
+         if (!callback) {
+            callback = function() {};
+         }
+
+         createWidgetFunction(element, JSON.parse(xhr.response));
+         callback(element);
       });
    }
 
    /**
-    * Executes the library
+    * Creates a widget based on the data provided
+    *
+    * @param {DataHash} data The data of the widget to create
+    * @param {userCallback} [callback] The callback executed when the widget is created
+    */
+   function createWidget(data, callback) {
+      var widgetElement = createWidgetElement(data);
+
+      data.type = dataTypeMap[data.type];
+      widget(widgetElement, data, callback);
+   }
+
+   /**
+    * Searches for elements of the page to turn into their relevant widget
     */
    function init() {
       [].forEach.call(
          document.querySelectorAll(joindInClass),
-         createCallback
+         function(element) {
+            // Use getAttribute() instead of the Dataset API to support IE 9-10
+            widget(
+               element,
+               {
+                  id: element.getAttribute('data-id'),
+                  type: dataTypeMap[element.getAttribute('data-type')]
+               }
+            );
+         }
       );
    }
 
    return {
+      createWidget: createWidget,
       init: init
    };
 }));

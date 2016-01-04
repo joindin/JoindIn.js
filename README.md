@@ -111,6 +111,30 @@ JoindIn.js provides the methods described in the following sections.
 The `init()` method parses the DOM to find all the elements of the type described in the [Usage](#usage) section and 
 transform them into the relevant widget.
 
+### `createWidget(data[, callback])`
+
+The `createWidget()` method allows you to create one or more widgets that you can further process before adding to 
+the DOM. It creates a widget based on the data provided and it optionally accept a callback executed when the widget 
+is created. The callback is passed the element containing the created widget. The data to pass are the same described
+in the [Usage](#usage) section, expect that they don't need the `data-` prefix.
+
+For example, to create a speaker widget with the default theme, containing my profile, and inside an element having as
+its ID `target`, you have to write:
+
+```js
+JoindIn.createWidget(
+   {
+      id: 25190,
+      type: speaker
+   },
+   function(widget) {
+      // Do something with widget
+   
+      document.getElementById('target').appendChild(widget);
+   }
+);
+```
+
 ## Elements supported
 
 The library supports the following elements:

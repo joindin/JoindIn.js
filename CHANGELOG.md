@@ -1,5 +1,11 @@
 # Changelog
 
+# Next
+
+* [!] Exposed the `createWidget()` method to create a supported widget ([#12][])
+
+[#12]: https://github.com/joindin/JoindIn.js/issues/12
+
 # 0.5.0 (03-01-2016)
 
 * [!] The library is not executed on load anymore ([#11][])
