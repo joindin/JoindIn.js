@@ -9,6 +9,8 @@
       root.JoindIn = factory();
    }
 }(this, function() {
+   'use strict';
+
    /**
     * @typedef DataHash
     * @type {Object}
@@ -16,7 +18,16 @@
     * @property {(number|string)} [id] The ID of the widget
     * @property {string} [theme] The theme to use
     */
-   'use strict';
+
+   /**
+    * @typedef DataTypeHash
+    * @type {Object}
+    * @property {string} cfps
+    * @property {string} event
+    * @property {string} speaker
+    * @property {string} talk
+    * @property {string} talk-comment
+    */
 
    /**
     * The callback called in case of success or failure of the HTTP request
@@ -34,7 +45,11 @@
     * @param {HTMLElement} element
     */
 
-   // Maps the data type defined as attributes to the corresponding type used by the API
+   /**
+    * Maps the data type defined as attributes to the corresponding type used by the API
+    *
+    * @type {DataTypeHash}
+    */
    var dataTypeMap = {
       cfps: 'cfps',
       event: 'events',
@@ -43,19 +58,39 @@
       'talk-comment': 'talk_comments'
    };
 
-   // Defines the class the serves as a hook to select elements
-   var joindInClass = '.joindin-embed';
+   /**
+    * Defines the class the serves as a hook to select elements
+    *
+    * @type {string}
+    */
+   var joindInClass = 'joindin-embed';
 
-   // Defines the base URL to call the JoindIn API
+   /**
+    * Defines the base URL to call the JoindIn API
+    *
+    * @type {string}
+    */
    var urlAPI = 'http://api.joind.in/v2.1/';
 
-   // Defines the URL to show the rating image
+   /**
+    * Defines the URL to show the rating image
+    *
+    * @type {string}
+    */
    var ratingImageUrl = 'https://joind.in/inc/img/rating-RATING.gif';
 
-   // Defines the base URL for the icons of the events
+   /**
+    * Defines the base URL for the icons of the events
+    *
+    * @type {string}
+    */
    var iconPath = 'https://joind.in/inc/img/event_icons/';
 
-   // Stores the createElement function to improve the effect of the minification
+   /**
+    * Stores the createElement function to improve the effect of the minification
+    *
+    * @type {Function}
+    */
    var createElement = document.createElement.bind(document);
 
    /**
@@ -748,7 +783,7 @@
     */
    function init() {
       [].forEach.call(
-         document.querySelectorAll(joindInClass),
+         document.querySelectorAll('.' + joindInClass),
          function(element) {
             // Use getAttribute() instead of the Dataset API to support IE 9-10
             widget(

@@ -3,6 +3,7 @@
 # Next
 
 * [!] Exposed the `createWidget()` method to create a supported widget ([#12][])
+* Improved internal documentation
 
 [#12]: https://github.com/joindin/JoindIn.js/issues/12
 
