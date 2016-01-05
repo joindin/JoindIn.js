@@ -188,7 +188,7 @@
             return;
          }
 
-         callback(xhr);
+         throw new Error(xhr.responseText);
       });
 
       xhr.open('GET', url, true);
