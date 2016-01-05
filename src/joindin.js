@@ -70,7 +70,7 @@
     *
     * @type {string}
     */
-   var urlAPI = 'http://api.joind.in/v2.1/';
+   var urlAPI = 'https://api.joind.in/v2.1/';
 
    /**
     * Defines the URL to show the rating image
