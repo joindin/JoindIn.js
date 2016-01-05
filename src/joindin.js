@@ -765,7 +765,7 @@
             callback = function() {};
          }
 
-         createWidgetFunction(element, JSON.parse(xhr.response));
+         createWidgetFunction(element, JSON.parse(xhr.responseText));
          callback(element);
       });
    }
