@@ -41,22 +41,28 @@ The last options you have to download the library are to clone the repository an
 
 ## Usage
 
-Once you have obtained the library, you have to create one or more DOM elements for every element you want to embed:
-talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you create must use 
-the class `joindin-embed` and define two `data-*` attributes:
+Once you have obtained the library, you have to include in your web pages one or more DOM elements for every element 
+you want to embed: talk, comment, or any other of the [elements supported](#elements-supported). The DOM elements you
+include must have the class `joindin-embed` and define at least two `data-*` attributes:
 
+* `data-url`: the URL to use to fetch the data of the element to embed. This attribute is required for all the widgets.
+* `data-type`: [the type of the element](#elements-supported) to embed. This attribute is required for all the widgets.
 * `data-id`: the ID of the element you want to embed. This attribute isn't required for all the widgets (e.g. the 
 call for papers widget). To know how to retrieve the ID of an element read the section
-[How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed);
-* `data-type`: [the type of the element](#elements-supported) to embed. This attribute is required for all the widgets;
+[How to retrieve the ID of the element to embed](#how-to-retrieve-the-id-of-the-element-to-embed).
+**This attribute is deprecated as of version 0.6.0 and its support will be removed in an upcoming version. Please use 
+`data-url` instead.**
 * `data-theme`: specify the theme of the widget between [the themes available](#themes-available). This attribute is 
 optional.
 
 An example of element that meets these requirements is the following:
 
 ```html
-<div class="joindin-embed" data-id="10889" data-type="talk"></div>
+<div class="joindin-embed" data-url="https://api.joind.in/v2.1/users/25190" data-type="speaker"></div>
 ```
+
+These HTML elements can be obtained by visiting the [Joind.in](https://joind.in/) website. In each page of a supported
+element, you'll find a section with the code to copy and paste in your website to embed it.
 
 With the element(s) in place, you have to include the CSS file provided. It should be placed in the `head` of your web 
 page. If you used Bower, you can include it as shown below:
@@ -124,7 +130,7 @@ its ID `target`, you have to write:
 ```js
 JoindIn.createWidget(
    {
-      id: 25190,
+      url: 'https://api.joind.in/v2.1/users/25190',
       type: 'speaker'
    },
    function(widget) {
@@ -147,86 +153,6 @@ The library supports the following elements:
 
 More elements will be integrated soon.
 
-In the following sections you can learn how to embed the elements supported.
-
-### Embedding a speaker
-
-To embed [my profile](https://joind.in/user/view/25190), you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-id="25190" data-type="speaker"></div>
-```
-
-### Embedding a talk
-
-To embed my talk "[Modern front-end with the eyes of a PHP developer](https://joind.in/talk/view/10889)",
-you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-id="10889" data-type="talk"></div>
-```
-
-If you want to embed the same talk using [one of the themes available](#themes-available), for example Shark,
-you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-id="10889" data-type="talk" data-theme="shark"></div>
-```
-
-### Embedding a comment of a talk
-
-To embed a specific comment published on the same talk, you have to add the following element instead:
-
-```html
-<div class="joindin-embed" data-id="44197" data-type="talk-comment"></div>
-```
-
-Note that in this case the ID refers to the comment, not the talk.
-
-### Embedding an event
-
-To embed the [jsDay 2015](https://joind.in/event/view/3094) event,
-you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-id="3094" data-type="event"></div>
-```
-
-### Embedding the call for papers
-
-To embed the currently open call for papers, you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-type="cfps"></div>
-```
-
-If you want to embed the same talk using [one of the themes available](#themes-available), for example Picton,
-you have to add the following element to your page:
-
-```html
-<div class="joindin-embed" data-id="10889" data-type="talk" data-theme="picton"></div>
-```
-
-### How to retrieve the ID of the element to embed
-
-Retrieving the ID of the element you want to embed is a bit tricky.
-
-The ID of a **speaker** can be found in the URL of the website. For example, the URL of my profile
-is [https://joind.in/user/view/25190](https://joind.in/user/view/25190), so the ID is 25190.
-
-The ID of a **talk** can be found in the URL of the website. For example, the URL of my talk
-"[Modern front-end with the eyes of a PHP developer](https://joind.in/talk/view/10889)" is
-[https://joind.in/talk/view/10889](https://joind.in/talk/view/10889), so the ID is 10889.
-
-To retrieve the ID of a **comment** you have to look at the source code of the page. It's written as part of the class
-name set to the element wrapping each comment. For example, you can find a class name like `comment-43964` where
-43964 is the ID of the comment.
-
-The ID of an **event** can be found in the URL of the website. For example, the URL of the jsDay 2015
-is [https://joind.in/event/view/3094](https://joind.in/event/view/3094), so the ID is 3094.
-
-The **call for papers** widget doesn't require any ID.
- 
 ## Themes available
 
 The library provides the following themes:

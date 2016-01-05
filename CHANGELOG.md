@@ -3,11 +3,13 @@
 # Next
 
 * [!] Exposed the `createWidget()` method to create a supported widget ([#12][])
+* [!] Switched from IDs to URLs. IDs are now deprecated. ([#13][])
 * Calling `init()` multiple times don't create a widget multiple times ([#14][])
 * Improved internal documentation
 
 [#14]: https://github.com/joindin/JoindIn.js/issues/14
 [#12]: https://github.com/joindin/JoindIn.js/issues/12
+[#13]: https://github.com/joindin/JoindIn.js/issues/13
 
 # 0.5.0 (03-01-2016)
 

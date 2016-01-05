@@ -15,6 +15,7 @@
     * @typedef DataHash
     * @type {Object}
     * @property {string} type The type of the widget
+    * @property {string} url The URL to use to fetch the data of the widget
     * @property {(number|string)} [id] The ID of the widget
     * @property {string} [theme] The theme to use
     */
@@ -755,6 +756,8 @@
          throw new Error('Data type not recognized');
       }
 
+      url = data.url || url;
+
       get(url + '?format=json', function(xhr) {
          // The widget has already been created, possibly by a previous call
          if (element.children.length > 0) {
@@ -795,6 +798,7 @@
                element,
                {
                   id: element.getAttribute('data-id'),
+                  url: element.getAttribute('data-url'),
                   type: dataTypeMap[element.getAttribute('data-type')]
                }
             );
