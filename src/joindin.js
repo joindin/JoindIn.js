@@ -756,6 +756,11 @@
       }
 
       get(url + '?format=json', function(xhr) {
+         // The widget has already been created, possibly by a previous call
+         if (element.children.length > 0) {
+            return;
+         }
+
          if (!callback) {
             callback = function() {};
          }
