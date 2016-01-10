@@ -3,6 +3,11 @@
 [JoindIn.js](https://github.com/joindin/JoindIn.js) is the official JavaScript library to embed
 [Joind.in](http://joind.in) comments, talks, and more.
 
+## Demo
+
+A live demo is available
+[here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
+
 ## Welcome
 
 Joind.in welcomes all contributors regardless of your ability or experience. We especially welcome you if you are new
@@ -16,11 +21,6 @@ JoindIn.js has been tested on the following browsers: Internet Explorer 9+, Chro
 
 The library follows the [UMD (Universal Module Definition)](https://github.com/umdjs/umd) pattern to work
 seamlessly with module systems such as AMD and CommonJS, and the browser.
-
-## Demo
-
-A live demo is available
-[here](http://htmlpreview.github.io/?https://github.com/joindin/JoindIn.js/blob/master/demo/index.html).
 
 ## Installation
 
