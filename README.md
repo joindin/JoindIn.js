@@ -97,7 +97,7 @@ require(['joindin-js'], function(JoindIn) {
 ```html
    <script src="node_modules/joindin-js/dist/joindin.min.js"></script>
    <script>
-      // Call JoindIn methods
+      // Call JoindIn methods exposed via a global object called JoindIn
    </script>
 </body>
 ```
