@@ -22,7 +22,8 @@ module.exports = function (grunt) {
       },
       uglify: {
          options: {
-            banner: '/*! JoindIn.js <%= pkg.version %> | Aurelio De Rosa (@AurelioDeRosa) | MIT/GPL-3.0 Licensed */\n'
+            banner: '/*! JoindIn.js <%= pkg.version %> | Aurelio De Rosa (@AurelioDeRosa) | MIT/GPL-3.0 Licensed */\n',
+            sourceMap: true
          },
          dist: {
             files: {

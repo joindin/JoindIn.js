@@ -4,10 +4,12 @@
 
 * [!] Exposed the `createWidget()` method to create a supported widget ([#12][])
 * Calling `init()` multiple times don't create a widget multiple times ([#14][])
+* Added source map for the JavaScript file ([#15][])
 * Improved internal documentation
 
 [#14]: https://github.com/joindin/JoindIn.js/issues/14
 [#12]: https://github.com/joindin/JoindIn.js/issues/12
+[#15]: https://github.com/joindin/JoindIn.js/issues/15
 
 # 0.5.0 (03-01-2016)
 
